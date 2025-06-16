@@ -4,5 +4,5 @@ namespace Aggraze.Application;
 
 public interface IFileReaderService
 { 
-    Task<List<TradeData>> ReadTradesAsync(string filePath);
+    Task<IReadOnlyList<TradeRow>> ReadTradesAsync(string filePath, string sheetName);
 }

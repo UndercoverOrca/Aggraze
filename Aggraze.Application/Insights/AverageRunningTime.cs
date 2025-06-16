@@ -8,7 +8,7 @@ namespace Aggraze.Application.Insights;
 public class AverageRunningTime : IInsight
 {
     public string Name => "Average running time";
-    public InsightResult GenerateInsight(IEnumerable<TradeData> trades)
+    public InsightResult GenerateInsight(IEnumerable<TradeRow> trades)
     {
         throw new NotImplementedException();
     }

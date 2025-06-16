@@ -8,7 +8,7 @@ namespace Aggraze.Application.Insights;
 public class MaximumDrawdown : IInsight
 {
     public string Name => "Maximum drawdown";
-    public InsightResult GenerateInsight(IEnumerable<TradeData> trades)
+    public InsightResult GenerateInsight(IEnumerable<TradeRow> trades)
     {
         throw new NotImplementedException();
     }

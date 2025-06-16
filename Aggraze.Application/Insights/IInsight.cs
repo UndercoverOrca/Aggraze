@@ -6,5 +6,5 @@ public interface IInsight
 {
     string Name { get; }
 
-    InsightResult GenerateInsight(IEnumerable<TradeData> trades);
+    InsightResult GenerateInsight(IEnumerable<TradeRow> trades);
 }

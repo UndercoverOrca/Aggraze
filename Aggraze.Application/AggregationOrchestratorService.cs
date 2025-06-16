@@ -12,7 +12,7 @@ public class AggregationOrchestratorService
         _insights = insights;
     }
 
-    public IReadOnlyList<InsightResult> RunAllInsights(List<TradeData> trades) =>
+    public IReadOnlyList<InsightResult> RunAllInsights(IReadOnlyList<TradeRow> trades) =>
         _insights
             .Select(insight => insight.GenerateInsight(trades))
             .ToList();

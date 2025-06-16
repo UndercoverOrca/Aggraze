@@ -21,6 +21,16 @@ namespace Aggraze
                 return;
             }
 
+            Console.WriteLine("Enter the name of the data sheet:");
+            var sheetName = Console.ReadLine();
+
+            if (string.IsNullOrWhiteSpace(sheetName))
+            {
+                Console.WriteLine("Invalid sheet name. Exiting.");
+                return;
+            }
+
+
             try
             {
                 // Resolve services
@@ -30,17 +40,18 @@ namespace Aggraze
                 var fileWriter = serviceProvider.GetRequiredService<IFileWriterService>();
 
                 // Read trades
-                var trades = await fileReader.ReadTradesAsync(filePath);
+                var trades = await fileReader.ReadTradesAsync(filePath, sheetName);
 
                 // Run insights
                 var insights = orchestrator.RunAllInsights(trades);
 
-                // Generate Excel
-                var workbook = excelGenerator.GenerateWorkbook(insights);
-
                 // Ask for output path
                 Console.WriteLine("Enter path to save the results Excel file:");
                 var outputPath = Console.ReadLine();
+
+
+                // Generate Excel
+                var workbook = excelGenerator.AddInsightSheet(filePath, insights, outputPath);
 
                 fileWriter.SaveWorkbook(workbook, outputPath);
 

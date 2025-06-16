@@ -9,7 +9,7 @@ public class Mutation : IInsight
 {
     public string Name => "Mutation";
     
-    public InsightResult GenerateInsight(IEnumerable<TradeData> trades)
+    public InsightResult GenerateInsight(IEnumerable<TradeRow> trades)
     {
         throw new NotImplementedException();
     }

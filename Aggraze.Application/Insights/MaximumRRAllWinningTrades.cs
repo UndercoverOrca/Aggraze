@@ -8,7 +8,7 @@ namespace Aggraze.Application.Insights;
 public class MaximumRRAllWinningTrades : IInsight
 {
     public string Name => "Maximum RR where all trades would still win";
-    public InsightResult GenerateInsight(IEnumerable<TradeData> trades)
+    public InsightResult GenerateInsight(IEnumerable<TradeRow> trades)
     {
         throw new NotImplementedException();
     }
