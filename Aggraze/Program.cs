@@ -29,8 +29,7 @@ namespace Aggraze
                 Console.WriteLine("Invalid sheet name. Exiting.");
                 return;
             }
-
-
+            
             try
             {
                 // Resolve services
@@ -59,7 +58,7 @@ namespace Aggraze
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"❌ Error: {ex.Message}");
+                Console.WriteLine($"Error: {ex.Message}");
             }
         }
     }
