@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Aggraze.Infrastructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a4fbeda444ac55ff9d53bba746384e792535059d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a26da3e3f42452fd8468b4d37fd3855e915c487d")]
 [assembly: System.Reflection.AssemblyProductAttribute("Aggraze.Infrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Aggraze.Infrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,25 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\timno\\RiderProjects\\Aggraze\\Aggraze.Domain\\Aggraze.Domain.csproj": {}
+    "C:\\Users\\tvdnol\\source\\repos\\Aggraze\\Aggraze.Domain\\Aggraze.Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\timno\\RiderProjects\\Aggraze\\Aggraze.Domain\\Aggraze.Domain.csproj": {
+    "C:\\Users\\tvdnol\\source\\repos\\Aggraze\\Aggraze.Domain\\Aggraze.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\timno\\RiderProjects\\Aggraze\\Aggraze.Domain\\Aggraze.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\tvdnol\\source\\repos\\Aggraze\\Aggraze.Domain\\Aggraze.Domain.csproj",
         "projectName": "Aggraze.Domain",
-        "projectPath": "C:\\Users\\timno\\RiderProjects\\Aggraze\\Aggraze.Domain\\Aggraze.Domain.csproj",
-        "packagesPath": "C:\\Users\\timno\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\timno\\RiderProjects\\Aggraze\\Aggraze.Domain\\obj\\",
+        "projectPath": "C:\\Users\\tvdnol\\source\\repos\\Aggraze\\Aggraze.Domain\\Aggraze.Domain.csproj",
+        "packagesPath": "C:\\Users\\tvdnol\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\tvdnol\\source\\repos\\Aggraze\\Aggraze.Domain\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\timno\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\tvdnol\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
