@@ -16,8 +16,8 @@ public class AverageRunningTime : IInsight
     }
 
     public string Name => "Average running time";
-    public InsightResult GenerateInsight(IEnumerable<TradeRow> trades)
-    {
-        this._averageRunningTimeCalculator
-    }
+    
+    public InsightResult GenerateInsight(IEnumerable<TradeRow> trades) =>
+        this._averageRunningTimeCalculator.CalculateAverageRunningTime(Name, trades);
+    
 }

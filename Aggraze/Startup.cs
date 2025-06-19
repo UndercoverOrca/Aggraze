@@ -1,7 +1,9 @@
 using Aggraze.Application;
 using Aggraze.Application.Insights;
+using Aggraze.Domain.Calculators;
 using Aggraze.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace Aggraze;
 
@@ -10,6 +12,9 @@ public class Startup
     public ServiceProvider ConfigureServices()
     {
         var services = new ServiceCollection();
+        
+        // Register Domain services
+        services.AddScoped<IAverageRunningTimeCalculator, AverageRunningTimeCalculator>();
 
         // Register application services
         services.AddScoped<AggregationOrchestratorService>();
