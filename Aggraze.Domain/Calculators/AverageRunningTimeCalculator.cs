@@ -36,7 +36,7 @@ public class AverageRunningTimeCalculator : IAverageRunningTimeCalculator
             
             if (!summaryHelper.ContainsKey(month))
             {
-                summaryHelper[month] = new List<TimeSpan>();
+                summaryHelper[month] = [];
             }
             
             summaryHelper[month].AddRange(averageDurationAsTimeSpan);
