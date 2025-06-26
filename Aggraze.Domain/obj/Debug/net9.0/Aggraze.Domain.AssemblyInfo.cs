@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Aggraze.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7e41fa66c296610f854475a9076b8d113d40e5ae")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+597d29d6f5ef2356e726a00e1411c8614da37661")]
 [assembly: System.Reflection.AssemblyProductAttribute("Aggraze.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Aggraze.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -3,7 +3,6 @@ using Aggraze.Application.Insights;
 using Aggraze.Domain.Calculators;
 using Aggraze.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace Aggraze;
 

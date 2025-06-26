@@ -1,13 +1,13 @@
+using System.Globalization;
 using Aggraze.Application;
 using Aggraze.Domain;
 using ClosedXML.Excel;
-using DocumentFormat.OpenXml.InkML;
 
 namespace Aggraze.Infrastructure;
 
 public class FileReaderService : IFileReaderService
 {
-    public async Task<IReadOnlyList<TradeRow>> ReadTradesAsync(string filePath, string sheetName)
+    public async Task<IReadOnlyList<TradeRow>> ReadTradesAsync(string filePath, string? sheetName)
     {
         var tradeRows = new List<TradeRow>();
 
@@ -41,12 +41,14 @@ public class FileReaderService : IFileReaderService
                 {
                     var header = headers[i];
                     var value = cellValues[i].GetValue<string>().Trim();
-                    data[header] = value ?? string.Empty;
+                    data[header] = value;
                 }
 
-                var dateAsString = data.ContainsKey("Date") ? data["Date"] : string.Empty;
+                var dateAsString = data.TryGetValue("Date", out var dateValue)
+                    ? dateValue
+                    : string.Empty;
 
-                var date = DateOnly.FromDateTime(DateTime.Parse(dateAsString));
+                var date = DateOnly.FromDateTime(DateTime.Parse(dateAsString, CultureInfo.InvariantCulture));
 
                 tradeRows.Add(new TradeRow(date, data));
             }

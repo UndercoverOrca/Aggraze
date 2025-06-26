@@ -1,9 +1,9 @@
 using Aggraze.Domain;
-using DocumentFormat.OpenXml.Spreadsheet;
+using ClosedXML.Excel;
 
 namespace Aggraze.Application;
 
 public interface IExcelGenerationService
 {
-    Workbook AddInsightSheet(string sourceFilePath, IReadOnlyList<InsightResult> insights, string outputFilePath);
+    XLWorkbook AddInsightSheet(string sourceFilePath, IReadOnlyList<InsightResult> insights);
 }

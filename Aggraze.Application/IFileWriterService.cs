@@ -1,9 +1,8 @@
-using Aggraze.Domain;
-using DocumentFormat.OpenXml.Spreadsheet;
+using ClosedXML.Excel;
 
 namespace Aggraze.Application;
 
 public interface IFileWriterService
 {
-    void SaveWorkbook(Workbook workbook, string outputPath);
+    void SaveWorkbook(XLWorkbook workbook, string outputPath);
 }

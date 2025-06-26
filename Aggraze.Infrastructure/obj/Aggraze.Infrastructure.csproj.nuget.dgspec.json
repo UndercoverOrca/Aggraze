@@ -58,6 +58,10 @@
             "ClosedXML": {
               "target": "Package",
               "version": "[0.105.0, )"
+            },
+            "LanguageExt.Core": {
+              "target": "Package",
+              "version": "[4.4.9, )"
             }
           },
           "imports": [
@@ -126,6 +130,12 @@
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
+          "dependencies": {
+            "LanguageExt.Core": {
+              "target": "Package",
+              "version": "[4.4.9, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

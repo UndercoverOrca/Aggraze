@@ -1,4 +1,5 @@
 using Aggraze.Domain;
+using LanguageExt;
 
 namespace Aggraze.Application.Insights;
 
@@ -8,8 +9,8 @@ namespace Aggraze.Application.Insights;
 public class AverageRunningTimeWinners : IInsight
 {
     public string Name => "Average running time winners";
-    public InsightResult GenerateInsight(IEnumerable<TradeRow> trades)
+    public Option<InsightResult> GenerateInsight(IEnumerable<TradeRow> trades)
     {
-        throw new NotImplementedException();
+        return Prelude.None;
     }
 }

@@ -1,4 +1,5 @@
 using Aggraze.Domain;
+using LanguageExt;
 
 namespace Aggraze.Application.Insights;
 
@@ -9,8 +10,8 @@ public class Mutation : IInsight
 {
     public string Name => "Mutation";
     
-    public InsightResult GenerateInsight(IEnumerable<TradeRow> trades)
+    public Option<InsightResult> GenerateInsight(IEnumerable<TradeRow> trades)
     {
-        throw new NotImplementedException();
+        return Prelude.None;
     }
 }

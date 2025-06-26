@@ -1,12 +1,10 @@
 using Aggraze.Application;
-using DocumentFormat.OpenXml.Spreadsheet;
+using ClosedXML.Excel;
 
 namespace Aggraze.Infrastructure;
 
 public class FileWriterService : IFileWriterService
 {
-    public void SaveWorkbook(Workbook workbook, string outputPath)
-    {
-        throw new NotImplementedException();
-    }
+    public void SaveWorkbook(XLWorkbook workbook, string outputPath) =>
+        workbook.SaveAs(outputPath);
 }

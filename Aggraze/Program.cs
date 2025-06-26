@@ -47,10 +47,9 @@ namespace Aggraze
                 // Ask for output path
                 Console.WriteLine("Enter path to save the results Excel file:");
                 var outputPath = Console.ReadLine();
-
-
+                
                 // Generate Excel
-                var workbook = excelGenerator.AddInsightSheet(filePath, insights, outputPath);
+                var workbook = excelGenerator.AddInsightSheet(filePath, insights);
 
                 fileWriter.SaveWorkbook(workbook, outputPath);
 

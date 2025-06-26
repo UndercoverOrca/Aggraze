@@ -1,5 +1,6 @@
 using Aggraze.Application.Insights;
 using Aggraze.Domain;
+using LanguageExt.UnsafeValueAccess;
 
 namespace Aggraze.Application;
 
@@ -15,5 +16,7 @@ public class AggregationOrchestratorService
     public IReadOnlyList<InsightResult> RunAllInsights(IReadOnlyList<TradeRow> trades) =>
         _insights
             .Select(insight => insight.GenerateInsight(trades))
+            .Where(x => x.IsSome)
+            .Select(x => x.ValueUnsafe())
             .ToList();
 }

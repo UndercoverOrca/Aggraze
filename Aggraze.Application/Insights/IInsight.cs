@@ -1,4 +1,5 @@
 using Aggraze.Domain;
+using LanguageExt;
 
 namespace Aggraze.Application.Insights;
 
@@ -6,5 +7,5 @@ public interface IInsight
 {
     string Name { get; }
 
-    InsightResult GenerateInsight(IEnumerable<TradeRow> trades);
+    Option<InsightResult> GenerateInsight(IEnumerable<TradeRow> trades);
 }

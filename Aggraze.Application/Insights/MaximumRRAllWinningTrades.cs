@@ -1,4 +1,5 @@
 using Aggraze.Domain;
+using LanguageExt;
 
 namespace Aggraze.Application.Insights;
 
@@ -8,8 +9,8 @@ namespace Aggraze.Application.Insights;
 public class MaximumRRAllWinningTrades : IInsight
 {
     public string Name => "Maximum RR where all trades would still win";
-    public InsightResult GenerateInsight(IEnumerable<TradeRow> trades)
+    public Option<InsightResult> GenerateInsight(IEnumerable<TradeRow> trades)
     {
-        throw new NotImplementedException();
+        return Prelude.None;
     }
 }

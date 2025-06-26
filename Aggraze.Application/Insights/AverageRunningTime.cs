@@ -1,5 +1,6 @@
 using Aggraze.Domain;
 using Aggraze.Domain.Calculators;
+using LanguageExt;
 
 namespace Aggraze.Application.Insights;
 
@@ -9,6 +10,7 @@ namespace Aggraze.Application.Insights;
 public class AverageRunningTime : IInsight
 {
     private readonly IAverageRunningTimeCalculator _averageRunningTimeCalculator;
+    private static string[] RequiredHeaders = ["Closing time", "Open time"];
 
     public AverageRunningTime(IAverageRunningTimeCalculator averageRunningTimeCalculator)
     {
@@ -17,7 +19,9 @@ public class AverageRunningTime : IInsight
 
     public string Name => "Average running time";
     
-    public InsightResult GenerateInsight(IEnumerable<TradeRow> trades) =>
-        this._averageRunningTimeCalculator.CalculateAverageRunningTime(Name, trades);
-    
+    public Option<InsightResult> GenerateInsight(IEnumerable<TradeRow> trades) =>
+         !RequiredHeaders
+            .All(header => trades.First().Value.ContainsKey(header))
+            ? Prelude.None
+            : Prelude.Some(this._averageRunningTimeCalculator.CalculateAverageRunningTime(Name, trades));
 }
