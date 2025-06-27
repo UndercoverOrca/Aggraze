@@ -41,11 +41,13 @@ public class AverageRunningTimeCalculator : IAverageRunningTimeCalculator
             
             summaryHelper[month].AddRange(averageDurationAsTimeSpan);
         }
-        
-        var summary = summaryHelper.ToDictionary(
-            kvp => kvp.Key,
-            kvp => TimeSpan.FromTicks((long)kvp.Value.Average(d => d.Ticks))
-        );
+
+        var summary = new Summary(
+            SummaryType.Average,
+            summaryHelper.ToDictionary(
+                x => x.Key,
+                x => TimeSpan.FromTicks((long)x.Value.Average(d => d.Ticks))
+            ));
 
         return new InsightResult(name, yearMonthData, summary);
     }

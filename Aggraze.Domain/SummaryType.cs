@@ -1,6 +1,6 @@
 ﻿namespace Aggraze.Domain;
 
-public enum AggregationType
+public enum SummaryType
 {
     Average,
     Minimum,

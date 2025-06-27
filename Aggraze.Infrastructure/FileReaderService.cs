@@ -48,7 +48,10 @@ public class FileReaderService : IFileReaderService
                     ? dateValue
                     : string.Empty;
 
-                var date = DateOnly.FromDateTime(DateTime.Parse(dateAsString, CultureInfo.InvariantCulture));
+                var date = DateOnly.FromDateTime(DateTime.ParseExact(
+                    dateAsString,
+                    "dd/MM/yyyy HH:mm:ss",
+                    CultureInfo.InvariantCulture));
 
                 tradeRows.Add(new TradeRow(date, data));
             }
