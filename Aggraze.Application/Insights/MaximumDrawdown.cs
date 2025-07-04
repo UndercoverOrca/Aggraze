@@ -8,6 +8,8 @@ namespace Aggraze.Application.Insights;
 /// </summary>
 public class MaximumDrawdown : IInsight
 {
+    private static string[] RequiredHeaders = ["Max. drawdown", "Date"];
+
     public string Name => "Maximum drawdown";
     public Option<InsightResult> GenerateInsight(IEnumerable<TradeRow> trades)
     {

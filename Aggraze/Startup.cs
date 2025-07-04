@@ -14,6 +14,7 @@ public class Startup
         
         // Register Domain services
         services.AddScoped<IAverageRunningTimeCalculator, AverageRunningTimeCalculator>();
+        services.AddScoped<IMaximumDrawdownCalculator, MaximumDrawdownCalculator>();
 
         // Register application services
         services.AddScoped<AggregationOrchestratorService>();
