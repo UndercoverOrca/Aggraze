@@ -49,7 +49,7 @@ namespace Aggraze
                 var outputPath = Console.ReadLine();
                 
                 // Generate Excel
-                var workbook = excelGenerator.AddInsightSheet(filePath, insights);
+                var workbook = excelGenerator.AddInsightsToSheet(filePath, insights);
 
                 fileWriter.SaveWorkbook(workbook, outputPath);
 

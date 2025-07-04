@@ -9,31 +9,29 @@ public class ExcelGenerationService : IExcelGenerationService
 {
     private static CultureInfo culture = CultureInfo.InvariantCulture;
     private const int FirstColumnMargin = 1;
+    private static int rowIndex = 1;
 
-    public XLWorkbook AddInsightSheet(string sourceFilePath, IReadOnlyList<InsightResult> insights)
+    public XLWorkbook AddInsightsToSheet(string sourceFilePath, IReadOnlyList<InsightResult> insights)
     {
         var workbook = new XLWorkbook(sourceFilePath);
         var insightSheet = workbook.Worksheets.Add("Insights");
 
-        var rowIndex = 1;
         const int columnIndex = 1;
         const int headerSize = 12;
 
         foreach (var insight in insights)
         {
-            SetHeader(insightSheet, rowIndex, columnIndex, headerSize, insight);
+            SetHeader(insightSheet, columnIndex, headerSize, insight);
 
             rowIndex++;
 
-            SetMonths(columnIndex, insightSheet, rowIndex);
+            SetMonths(columnIndex, insightSheet);
 
             rowIndex++;
 
-            SetData(insight, columnIndex, insightSheet, rowIndex);
+            SetData(insight, columnIndex, insightSheet);
 
-            rowIndex++;
-
-            SetSummary(insight, columnIndex, insightSheet, rowIndex);
+            SetSummary(insight, columnIndex, insightSheet);
 
             rowIndex++;
             rowIndex++;
@@ -43,50 +41,17 @@ public class ExcelGenerationService : IExcelGenerationService
         return workbook;
     }
 
-    private static void SetSummary(InsightResult insight, int columnIndex, IXLWorksheet insightSheet, int rowIndex)
+    private static void SetHeader(IXLWorksheet insightSheet, int columnIndex, int headerSize, InsightResult insight)
     {
-        var columnIndexForData = columnIndex;
-
-        foreach (var summary in insight.Summary.data)
-        {
-            if (columnIndexForData == columnIndex)
-            {
-                insightSheet.Cell(rowIndex, columnIndexForData).Value = insight.Summary.SummaryType.ToString();
-                insightSheet.Cell(rowIndex, columnIndexForData).Style.Font.SetBold();
-                insightSheet.Cell(rowIndex, columnIndexForData).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
-            }
-            else
-            {
-                insightSheet.Cell(rowIndex, columnIndexForData).Value = summary.Value;
-            }
-
-            columnIndexForData++;
-        }
+        insightSheet.Range(rowIndex, columnIndex, rowIndex, columnIndex + 12).Merge();
+        insightSheet.Cell(rowIndex, columnIndex).Style.Font.SetBold();
+        insightSheet.Cell(rowIndex, columnIndex).Style.Font.FontSize = headerSize;
+        insightSheet.Cell(rowIndex, columnIndex).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+        insightSheet.Cell(rowIndex, columnIndex).Value = insight.InsightName;
+        insightSheet.Cell(rowIndex, columnIndex).Style.Fill.BackgroundColor = XLColor.LightGray;
     }
 
-    private static void SetData(InsightResult insight, int columnIndex, IXLWorksheet insightSheet, int rowIndex)
-    {
-        foreach (var year in insight.YearMonthData)
-        {
-            var columnIndexForData = columnIndex;
-
-            insightSheet.Cell(rowIndex, columnIndexForData).Value = year.Key;
-            insightSheet.Cell(rowIndex, columnIndexForData).Style.Font.SetBold();
-
-            columnIndexForData++;
-
-            // TODO: When a month is empty, we should skip it.
-            foreach (var monthlyData in year.Value)
-            {
-                var monthIndex = (DateTime.ParseExact(monthlyData.Key, "MMMM", culture).Month) + FirstColumnMargin;
-                
-                insightSheet.Cell(rowIndex, monthIndex).Value = monthlyData.Value;
-                columnIndexForData++;
-            }
-        }
-    }
-
-    private static void SetMonths(int columnIndex, IXLWorksheet insightSheet, int rowIndex)
+    private static void SetMonths(int columnIndex, IXLWorksheet insightSheet)
     {
         var columnIndexForMonths = columnIndex + FirstColumnMargin;
         for (var i = 0; i < columnIndex + 12; i++)
@@ -98,12 +63,34 @@ public class ExcelGenerationService : IExcelGenerationService
         }
     }
 
-    private static void SetHeader(IXLWorksheet insightSheet, int rowIndex, int columnIndex, int headerSize, InsightResult insight)
+    private static void SetData(InsightResult insight, int columnIndex, IXLWorksheet insightSheet)
     {
-        insightSheet.Range(rowIndex, columnIndex, rowIndex, columnIndex + 12).Merge();
+        foreach (var year in insight.YearMonthData)
+        {
+            insightSheet.Cell(rowIndex, columnIndex).Value = year.Key;
+            insightSheet.Cell(rowIndex, columnIndex).Style.Font.SetBold();
+
+            foreach (var monthlyData in year.Value)
+            {
+                var monthIndex = (DateTime.ParseExact(monthlyData.Key, "MMMM", culture).Month) + FirstColumnMargin;
+                insightSheet.Cell(rowIndex, monthIndex).Value = monthlyData.Value.ToString("g");
+            }
+            
+            rowIndex++;
+        }
+    }
+
+    private static void SetSummary(InsightResult insight, int columnIndex, IXLWorksheet insightSheet)
+    {
+        insightSheet.Cell(rowIndex, columnIndex).Value = insight.Summary.SummaryType.ToString();
         insightSheet.Cell(rowIndex, columnIndex).Style.Font.SetBold();
-        insightSheet.Cell(rowIndex, columnIndex).Style.Font.FontSize = headerSize;
-        insightSheet.Cell(rowIndex, columnIndex).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
-        insightSheet.Cell(rowIndex, columnIndex).Value = insight.InsightName;
+        insightSheet.Cell(rowIndex, columnIndex).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
+
+        foreach (var summary in insight.Summary.data)
+        {
+            var monthIndex = (DateTime.ParseExact(summary.Key, "MMMM", culture).Month) + FirstColumnMargin;
+            insightSheet.Cell(rowIndex, monthIndex).Value = summary.Value.ToString("g");
+            insightSheet.Range(rowIndex, columnIndex, rowIndex, columnIndex + 12).Style.Font.SetBold();
+        }
     }
 }

@@ -49,6 +49,10 @@ public class AverageRunningTimeCalculator : IAverageRunningTimeCalculator
                 x => TimeSpan.FromTicks((long)x.Value.Average(d => d.Ticks))
             ));
 
-        return new InsightResult(name, yearMonthData, summary);
+        var orderedYearMonthData = yearMonthData
+            .OrderBy(x => x.Key)
+            .ToDictionary(x => x.Key, x => x.Value);
+
+        return new InsightResult(name, orderedYearMonthData, summary);
     }
 }
