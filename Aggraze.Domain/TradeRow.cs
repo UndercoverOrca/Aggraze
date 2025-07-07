@@ -2,4 +2,4 @@
 
 public record TradeRow(
     DateOnly Date,
-    IReadOnlyDictionary<string, string> Value);
+    TradeRowData Data);
