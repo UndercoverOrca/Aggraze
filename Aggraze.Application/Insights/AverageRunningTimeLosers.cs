@@ -1,5 +1,6 @@
 using Aggraze.Domain;
 using Aggraze.Domain.Calculators;
+using Aggraze.Domain.Types;
 using LanguageExt;
 using static LanguageExt.Prelude;
 
@@ -11,20 +12,21 @@ namespace Aggraze.Application.Insights;
 public class AverageRunningTimeLosers : IInsight
 {
     private readonly IAverageRunningTimeCalculator _averageRunningTimeLosersCalculator;
-    private static string[] requiredHeaders = ["Closing time", "Open time", "Result", "Date"];
 
     public AverageRunningTimeLosers(IAverageRunningTimeCalculator averageRunningTimeLosersCalculator) =>
         this._averageRunningTimeLosersCalculator = averageRunningTimeLosersCalculator;
 
     public string Name => "Average running time losers";
 
-    public Option<InsightResult> GenerateInsight(IEnumerable<TradeRow> trades)
-    {
-        var filteredTrades = trades.Where(x => x.Value["Result"] == "Loss").ToList();
-        return filteredTrades.Any() &&
-               requiredHeaders
-                   .All(header => filteredTrades.First().Value.ContainsKey(header))
-            ? Some(this._averageRunningTimeLosersCalculator.CalculateAverageRunningTime(Name, filteredTrades))
+    public Option<InsightResult> GenerateInsight(IEnumerable<TradeRow> trades) =>
+        trades
+            .All(ContainsRequiredValues)
+            ? Some(this._averageRunningTimeLosersCalculator.CalculateAverageRunningTime(Name, trades.Where(x => x.Data.Result == Result.Loss)))
             : None;
-    }
+    
+    private static Func<TradeRow, bool> ContainsRequiredValues => x =>
+        x.Data.Date.IsSome
+        && x.Data.OpenTime.IsSome
+        && x.Data.ClosingTime.IsSome
+        && x.Data.Result.IsSome;
 }

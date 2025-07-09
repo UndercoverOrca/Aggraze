@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using LanguageExt.UnsafeValueAccess;
 
 namespace Aggraze.Domain.Calculators;
 
@@ -11,7 +12,7 @@ public class AverageRunningTimeCalculator : IAverageRunningTimeCalculator
         var groupedByYearAndMonth = trades
             .GroupBy(x => new { x.Date.Year, x.Date.Month })
             .ToDictionary(x => x.Key, x => x
-                .Select(y => y.Value));
+                .Select(y => y.Data));
         
         var yearMonthData = new Dictionary<int, Dictionary<string, TimeSpan>>();
         var summaryHelper = new Dictionary<string, List<TimeSpan>>();
@@ -19,7 +20,7 @@ public class AverageRunningTimeCalculator : IAverageRunningTimeCalculator
         foreach (var group in groupedByYearAndMonth)
         {
             var averageDuration = group.Value
-                .Select(trade => TimeSpan.Parse(trade["Closing time"]) - TimeSpan.Parse(trade["Open time"]))
+                .Select(trade => trade.ClosingTime.Value() - trade.OpenTime.Value())
                 .Average(timeSpan => timeSpan.Ticks);
 
             var averageDurationAsTimeSpan = TimeSpan.FromTicks((long)averageDuration);

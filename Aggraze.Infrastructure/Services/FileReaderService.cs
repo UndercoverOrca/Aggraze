@@ -52,8 +52,8 @@ public class FileReaderService : IFileReaderService
                     dateAsString,
                     "dd/MM/yyyy HH:mm:ss",
                     CultureInfo.InvariantCulture));
-
-                tradeRows.Add(new TradeRow(date, data));
+                
+                tradeRows.Add(new TradeRow(date, TradeRowDataMapper.Map(data)));
             }
         });
 
