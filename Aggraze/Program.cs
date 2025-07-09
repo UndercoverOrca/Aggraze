@@ -43,10 +43,8 @@ namespace Aggraze
 
                 // Run insights
                 var insights = orchestrator.RunAllInsights(trades);
-
-                // Ask for output path
-                Console.WriteLine("Enter path to save the results Excel file:");
-                var outputPath = Console.ReadLine();
+                
+                var outputPath = filePath.Replace(".xlsx", "_insights.xlsx");
                 
                 // Generate Excel
                 var workbook = excelGenerator.AddInsightsToSheet(filePath, insights);

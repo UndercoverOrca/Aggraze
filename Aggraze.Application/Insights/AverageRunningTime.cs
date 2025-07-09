@@ -11,18 +11,20 @@ namespace Aggraze.Application.Insights;
 public class AverageRunningTime : IInsight
 {
     private readonly IAverageRunningTimeCalculator _averageRunningTimeCalculator;
-    private static string[] RequiredHeaders = ["Closing time", "Open time", "Date"];
 
-    public AverageRunningTime(IAverageRunningTimeCalculator averageRunningTimeCalculator)
-    {
-        _averageRunningTimeCalculator = averageRunningTimeCalculator;
-    }
+    public AverageRunningTime(IAverageRunningTimeCalculator averageRunningTimeCalculator) =>
+        this._averageRunningTimeCalculator = averageRunningTimeCalculator;
 
     public string Name => "Average running time";
-    
+
     public Option<InsightResult> GenerateInsight(IEnumerable<TradeRow> trades) =>
-         !RequiredHeaders
-            .All(header => trades.First().Value.ContainsKey(header))
-            ? None
-            : Some(this._averageRunningTimeCalculator.CalculateAverageRunningTime(Name, trades));
+        trades
+            .All(ContainsRequiredValues)
+            ? Some(this._averageRunningTimeCalculator.CalculateAverageRunningTime(Name, trades))
+            : None;
+
+    private static Func<TradeRow, bool> ContainsRequiredValues => x =>
+        x.Data.Date.IsSome
+        && x.Data.OpenTime.IsSome
+        && x.Data.ClosingTime.IsSome;
 }
