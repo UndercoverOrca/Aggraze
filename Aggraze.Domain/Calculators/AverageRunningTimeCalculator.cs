@@ -1,11 +1,12 @@
 ﻿using System.Globalization;
+using Aggraze.Domain.Types;
 using LanguageExt.UnsafeValueAccess;
 
 namespace Aggraze.Domain.Calculators;
 
 public class AverageRunningTimeCalculator : IAverageRunningTimeCalculator
 {
-    public InsightResult CalculateAverageRunningTime(string name, IEnumerable<TradeRow> trades)
+    public InsightResult Calculate(string name, IEnumerable<TradeRow> trades)
     {
         var culture = CultureInfo.InvariantCulture;
             
@@ -42,7 +43,7 @@ public class AverageRunningTimeCalculator : IAverageRunningTimeCalculator
             
             summaryHelper[month].AddRange(averageDurationAsTimeSpan);
         }
-
+        
         var summary = new Summary(
             SummaryType.Average,
             summaryHelper.ToDictionary(

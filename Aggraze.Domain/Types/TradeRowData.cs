@@ -1,7 +1,6 @@
-﻿using Aggraze.Domain.Types;
-using LanguageExt;
+﻿using LanguageExt;
 
-namespace Aggraze.Domain;
+namespace Aggraze.Domain.Types;
 
 public class TradeRowData
 {

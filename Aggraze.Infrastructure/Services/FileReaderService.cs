@@ -1,9 +1,9 @@
 using System.Globalization;
-using Aggraze.Application;
-using Aggraze.Domain;
+using Aggraze.Application.Services;
+using Aggraze.Domain.Types;
 using ClosedXML.Excel;
 
-namespace Aggraze.Infrastructure;
+namespace Aggraze.Infrastructure.Services;
 
 public class FileReaderService : IFileReaderService
 {

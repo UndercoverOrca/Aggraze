@@ -1,4 +1,4 @@
-using Aggraze.Domain;
+using Aggraze.Domain.Types;
 using LanguageExt;
 
 namespace Aggraze.Application.Insights;

@@ -1,7 +1,7 @@
-using Aggraze.Domain;
+using Aggraze.Domain.Types;
 using ClosedXML.Excel;
 
-namespace Aggraze.Application;
+namespace Aggraze.Application.Services;
 
 public interface IExcelGenerationService
 {

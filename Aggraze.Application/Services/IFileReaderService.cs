@@ -1,6 +1,6 @@
-using Aggraze.Domain;
+using Aggraze.Domain.Types;
 
-namespace Aggraze.Application;
+namespace Aggraze.Application.Services;
 
 public interface IFileReaderService
 { 

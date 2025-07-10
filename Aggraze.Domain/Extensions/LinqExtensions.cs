@@ -1,7 +1,7 @@
 ﻿using LanguageExt;
 using static LanguageExt.Prelude;
 
-namespace Aggraze.Domain;
+namespace Aggraze.Domain.Extensions;
 
 public static class LinqExtensions
 {

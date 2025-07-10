@@ -1,4 +1,3 @@
-using Aggraze.Domain;
 using Aggraze.Domain.Calculators;
 using Aggraze.Domain.Types;
 using LanguageExt;
@@ -21,7 +20,7 @@ public class AverageRunningTimeLosers : IInsight
     public Option<InsightResult> GenerateInsight(IEnumerable<TradeRow> trades) =>
         trades
             .All(ContainsRequiredValues)
-            ? Some(this._averageRunningTimeLosersCalculator.CalculateAverageRunningTime(Name, trades.Where(x => x.Data.Result == Result.Loss)))
+            ? Some(this._averageRunningTimeLosersCalculator.Calculate(Name, trades.Where(x => x.Data.Result == Result.Loss)))
             : None;
     
     private static Func<TradeRow, bool> ContainsRequiredValues => x =>

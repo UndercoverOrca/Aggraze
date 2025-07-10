@@ -1,4 +1,4 @@
-﻿namespace Aggraze.Domain;
+﻿namespace Aggraze.Domain.Types;
 
 public enum OrderType
 {

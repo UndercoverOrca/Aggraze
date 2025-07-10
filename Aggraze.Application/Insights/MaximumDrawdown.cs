@@ -1,5 +1,7 @@
-using Aggraze.Domain;
+using Aggraze.Domain.Calculators;
+using Aggraze.Domain.Types;
 using LanguageExt;
+using static LanguageExt.Prelude;
 
 namespace Aggraze.Application.Insights;
 
@@ -8,9 +10,20 @@ namespace Aggraze.Application.Insights;
 /// </summary>
 public class MaximumDrawdown : IInsight
 {
+    private readonly IMaximumDrawdownCalculator _maximumDrawdownCalculator;
+
+    public MaximumDrawdown(IMaximumDrawdownCalculator maximumDrawdownCalculator) =>
+        this._maximumDrawdownCalculator = maximumDrawdownCalculator;
+
     public string Name => "Maximum drawdown";
-    public Option<InsightResult> GenerateInsight(IEnumerable<TradeRow> trades)
-    {
-        return Prelude.None;
-    }
+
+    public Option<InsightResult> GenerateInsight(IEnumerable<TradeRow> trades) =>
+        trades
+            .All(ContainsRequiredValues)
+    ? Some(this._maximumDrawdownCalculator.Calculate(Name, trades))
+    : None;
+    
+    private static Func<TradeRow, bool> ContainsRequiredValues => x =>
+        x.Data.Date.IsSome
+        && x.Data.MaximumDrawdown.IsSome;
 }

@@ -1,9 +1,9 @@
 using System.Globalization;
-using Aggraze.Application;
-using Aggraze.Domain;
+using Aggraze.Application.Services;
+using Aggraze.Domain.Types;
 using ClosedXML.Excel;
 
-namespace Aggraze.Infrastructure;
+namespace Aggraze.Infrastructure.Services;
 
 public class ExcelGenerationService : IExcelGenerationService
 {
@@ -92,7 +92,7 @@ public class ExcelGenerationService : IExcelGenerationService
         insightSheet.Cell(rowIndex, columnIndex).Style.Border.RightBorder = XLBorderStyleValues.Thin;
         insightSheet.Range(rowIndex, columnIndex, rowIndex, columnIndex + 12).Style.Font.SetBold();
 
-        foreach (var summary in insight.Summary.data)
+        foreach (var summary in insight.Summary.Data)
         {
             var monthIndex = (DateTime.ParseExact(summary.Key, "MMMM", culture).Month) + FirstColumnMargin;
             insightSheet.Cell(rowIndex, monthIndex).Value = summary.Value.ToString("g");

@@ -1,5 +1,4 @@
-﻿using Aggraze.Domain;
-using Aggraze.Domain.Extensions;
+﻿using Aggraze.Domain.Extensions;
 using Aggraze.Domain.Types;
 
 namespace Aggraze.Infrastructure;

@@ -1,6 +1,8 @@
-﻿namespace Aggraze.Domain.Calculators;
+﻿using Aggraze.Domain.Types;
+
+namespace Aggraze.Domain.Calculators;
 
 public interface IAverageRunningTimeCalculator
 {
-    InsightResult CalculateAverageRunningTime(string name, IEnumerable<TradeRow> trades);
+    InsightResult Calculate(string name, IEnumerable<TradeRow> trades);
 }

@@ -1,5 +1,5 @@
-﻿namespace Aggraze.Domain;
+﻿namespace Aggraze.Domain.Types;
 
 public record Summary(
     SummaryType SummaryType,
-    Dictionary<string, TimeSpan> data);
+    Dictionary<string, TimeSpan> Data);

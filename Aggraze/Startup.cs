@@ -1,7 +1,7 @@
-using Aggraze.Application;
 using Aggraze.Application.Insights;
+using Aggraze.Application.Services;
 using Aggraze.Domain.Calculators;
-using Aggraze.Infrastructure;
+using Aggraze.Infrastructure.Services;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Aggraze;
