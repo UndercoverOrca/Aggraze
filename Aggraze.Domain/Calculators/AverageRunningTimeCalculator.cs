@@ -1,19 +1,13 @@
-﻿using System.Globalization;
-using Aggraze.Domain.Types;
+﻿using Aggraze.Domain.Types;
 using LanguageExt.UnsafeValueAccess;
 
 namespace Aggraze.Domain.Calculators;
 
-public class AverageRunningTimeCalculator : IAverageRunningTimeCalculator
+public class AverageRunningTimeCalculator : Calculator, IAverageRunningTimeCalculator
 {
     public InsightResult Calculate(string name, IEnumerable<TradeRow> trades)
     {
-        var culture = CultureInfo.InvariantCulture;
-            
-        var groupedByYearAndMonth = trades
-            .GroupBy(x => new { x.Date.Year, x.Date.Month })
-            .ToDictionary(x => x.Key, x => x
-                .Select(y => y.Data));
+        var groupedByYearAndMonth = GroupTradesByYearAndMonth(trades);
         
         var yearMonthData = new Dictionary<int, Dictionary<string, TimeSpan>>();
         var summaryHelper = new Dictionary<string, List<TimeSpan>>();
@@ -26,22 +20,13 @@ public class AverageRunningTimeCalculator : IAverageRunningTimeCalculator
 
             var averageDurationAsTimeSpan = TimeSpan.FromTicks((long)averageDuration);
 
-            var year = group.Key.Year;
-            var month= culture.DateTimeFormat.GetMonthName(group.Key.Month);
-
-            if (!yearMonthData.ContainsKey(year))
-            {
-                yearMonthData[year] = new Dictionary<string, TimeSpan>();
-            }
+            //TODO: Check whether this is correct
+            var x = TimeSpan.FromTicks(
+                (long)group.Value
+                    .Select(trade => trade.ClosingTime.Value() - trade.OpenTime.Value())
+                    .Average(x => x.Ticks));
             
-            yearMonthData[year][month] = averageDurationAsTimeSpan;
-            
-            if (!summaryHelper.ContainsKey(month))
-            {
-                summaryHelper[month] = [];
-            }
-            
-            summaryHelper[month].AddRange(averageDurationAsTimeSpan);
+            AddYearMonthSummary(yearMonthData, summaryHelper, group.Key, averageDurationAsTimeSpan);
         }
         
         var summary = new Summary(
@@ -51,9 +36,7 @@ public class AverageRunningTimeCalculator : IAverageRunningTimeCalculator
                 x => TimeSpan.FromTicks((long)x.Value.Average(d => d.Ticks))
             ));
 
-        var orderedYearMonthData = yearMonthData
-            .OrderBy(x => x.Key)
-            .ToDictionary(x => x.Key, x => x.Value);
+        var orderedYearMonthData = OrderYearMonthDataByYear(yearMonthData);
 
         return new InsightResult(name, orderedYearMonthData, summary);
     }

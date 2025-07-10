@@ -4,15 +4,10 @@ using LanguageExt.UnsafeValueAccess;
 
 namespace Aggraze.Application.Services;
 
-public class AggregationOrchestratorService
+public record AggregationOrchestratorService(IEnumerable<IInsight> Insights)
 {
-    private readonly IEnumerable<IInsight> _insights;
-
-    public AggregationOrchestratorService(IEnumerable<IInsight> insights) =>
-        _insights = insights;
-
     public IReadOnlyList<InsightResult> RunAllInsights(IReadOnlyList<TradeRow> trades) =>
-        _insights
+        this.Insights
             .Select(insight => insight.GenerateInsight(trades))
             .Where(x => x.IsSome)
             .Select(x => x.ValueUnsafe())
