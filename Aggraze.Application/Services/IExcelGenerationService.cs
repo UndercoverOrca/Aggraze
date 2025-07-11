@@ -5,5 +5,5 @@ namespace Aggraze.Application.Services;
 
 public interface IExcelGenerationService
 {
-    XLWorkbook AddInsightsToSheet(string sourceFilePath, IReadOnlyList<InsightResult> insights);
+    XLWorkbook AddInsightsToSheet(string sourceFilePath, IReadOnlyList<IInsightResult> insights);
 }

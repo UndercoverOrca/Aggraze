@@ -5,7 +5,7 @@ namespace Aggraze.Domain.Calculators;
 
 public class AverageRunningTimeCalculator : Calculator, IAverageRunningTimeCalculator
 {
-    public InsightResult Calculate(string name, IEnumerable<TradeRow> trades)
+    public IInsightResult Calculate(string name, IEnumerable<TradeRow> trades)
     {
         var groupedByYearAndMonth = GroupTradesByYearAndMonth(trades);
         
@@ -38,6 +38,6 @@ public class AverageRunningTimeCalculator : Calculator, IAverageRunningTimeCalcu
 
         var orderedYearMonthData = OrderYearMonthDataByYear(yearMonthData);
 
-        return new InsightResult(name, orderedYearMonthData, summary);
+        return new InsightResult<TimeSpan>(name, orderedYearMonthData, summary);
     }
 }

@@ -7,5 +7,5 @@ public interface IInsight
 {
     string Name { get; }
 
-    Option<InsightResult> GenerateInsight(IEnumerable<TradeRow> trades);
+    Option<IInsightResult> GenerateInsight(IEnumerable<TradeRow> trades);
 }

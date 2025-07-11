@@ -14,7 +14,7 @@ public class Startup
         
         // Register Domain services
         services.AddScoped<IAverageRunningTimeCalculator, AverageRunningTimeCalculator>();
-        services.AddScoped<IMaximumDrawdownCalculator, MaximumDrawdownCalculator>();
+        // services.AddScoped<IMaximumDrawdownCalculator, MaximumDrawdownCalculator>();
 
         // Register application services
         services.AddScoped<AggregationOrchestratorService>();
@@ -28,7 +28,7 @@ public class Startup
         services.AddScoped<IInsight, AverageRunningTime>();
         services.AddScoped<IInsight, AverageRunningTimeLosers>();
         services.AddScoped<IInsight, AverageRunningTimeWinners>();
-        services.AddScoped<IInsight, MaximumDrawdown>();
+        // services.AddScoped<IInsight, MaximumDrawdown>();
         services.AddScoped<IInsight, MaximumRRAllWinningTrades>();
         services.AddScoped<IInsight, Mutation>();
 

@@ -10,7 +10,7 @@ public class Mutation : IInsight
 {
     public string Name => "Mutation";
     
-    public Option<InsightResult> GenerateInsight(IEnumerable<TradeRow> trades)
+    public Option<IInsightResult> GenerateInsight(IEnumerable<TradeRow> trades)
     {
         return Prelude.None;
     }

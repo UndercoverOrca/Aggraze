@@ -17,7 +17,7 @@ public class AverageRunningTimeLosers : IInsight
 
     public string Name => "Average running time losers";
 
-    public Option<InsightResult> GenerateInsight(IEnumerable<TradeRow> trades) =>
+    public Option<IInsightResult> GenerateInsight(IEnumerable<TradeRow> trades) =>
         trades
             .All(ContainsRequiredValues)
             ? Some(this._averageRunningTimeLosersCalculator.Calculate(Name, trades.Where(x => x.Data.Result == Result.Loss)))

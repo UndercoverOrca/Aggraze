@@ -11,7 +11,7 @@ public class ExcelGenerationService : IExcelGenerationService
     private const int FirstColumnMargin = 1;
     private static int rowIndex = 1;
 
-    public XLWorkbook AddInsightsToSheet(string sourceFilePath, IReadOnlyList<InsightResult> insights)
+    public XLWorkbook AddInsightsToSheet(string sourceFilePath, IReadOnlyList<IInsightResult> insights)
     {
         var workbook = new XLWorkbook(sourceFilePath);
         var insightSheet = workbook.Worksheets.Add("Insights");
@@ -40,7 +40,7 @@ public class ExcelGenerationService : IExcelGenerationService
         return workbook;
     }
 
-    private static void SetHeader(IXLWorksheet insightSheet, int columnIndex, InsightResult insight)
+    private static void SetHeader(IXLWorksheet insightSheet, int columnIndex, IInsightResult insight)
     {
         insightSheet.Range(rowIndex, columnIndex + FirstColumnMargin, rowIndex, columnIndex + 12).Merge();
         insightSheet.Cell(rowIndex, columnIndex + FirstColumnMargin).Style.Font.SetBold();
@@ -63,7 +63,7 @@ public class ExcelGenerationService : IExcelGenerationService
         insightSheet.Range(rowIndex, columnIndex, rowIndex, columnIndex + 12).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
     }
 
-    private static void SetData(InsightResult insight, int columnIndex, IXLWorksheet insightSheet)
+    private static void SetData(IInsightResult insight, int columnIndex, IXLWorksheet insightSheet)
     {
         foreach (var year in insight.YearMonthData)
         {
@@ -74,7 +74,8 @@ public class ExcelGenerationService : IExcelGenerationService
             foreach (var monthlyData in year.Value)
             {
                 var monthIndex = (DateTime.ParseExact(monthlyData.Key, "MMMM", culture).Month) + FirstColumnMargin;
-                insightSheet.Cell(rowIndex, monthIndex).Value = monthlyData.Value.ToString("g");
+                insightSheet.Cell(rowIndex, monthIndex).Value = monthlyData.Value.ToString();
+                // insightSheet.Cell(rowIndex, monthIndex).Value = monthlyData.Value.ToString("g");
                 insightSheet.Cell(rowIndex, monthIndex).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
             }
             
@@ -84,7 +85,7 @@ public class ExcelGenerationService : IExcelGenerationService
         insightSheet.Range(rowIndex, columnIndex, rowIndex, columnIndex + 12).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
     }
 
-    private static void SetSummary(InsightResult insight, int columnIndex, IXLWorksheet insightSheet)
+    private static void SetSummary(IInsightResult insight, int columnIndex, IXLWorksheet insightSheet)
     {
         insightSheet.Cell(rowIndex, columnIndex).Value = insight.Summary.SummaryType.ToString();
         insightSheet.Cell(rowIndex, columnIndex).Style.Font.SetBold();

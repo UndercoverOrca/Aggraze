@@ -4,5 +4,5 @@ namespace Aggraze.Domain.Calculators;
 
 public interface IMaximumDrawdownCalculator
 {
-    InsightResult Calculate(string name, IEnumerable<TradeRow> trades);
+    IInsightResult Calculate(string name, IEnumerable<TradeRow> trades);
 }

@@ -9,7 +9,7 @@ namespace Aggraze.Application.Insights;
 public class MaximumRRAllWinningTrades : IInsight
 {
     public string Name => "Maximum RR where all trades would still win";
-    public Option<InsightResult> GenerateInsight(IEnumerable<TradeRow> trades)
+    public Option<IInsightResult> GenerateInsight(IEnumerable<TradeRow> trades)
     {
         return Prelude.None;
     }
