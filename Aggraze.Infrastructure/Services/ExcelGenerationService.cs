@@ -74,8 +74,7 @@ public class ExcelGenerationService : IExcelGenerationService
             foreach (var monthlyData in year.Value)
             {
                 var monthIndex = (DateTime.ParseExact(monthlyData.Key, "MMMM", culture).Month) + FirstColumnMargin;
-                insightSheet.Cell(rowIndex, monthIndex).Value = monthlyData.Value.ToString();
-                // insightSheet.Cell(rowIndex, monthIndex).Value = monthlyData.Value.ToString("g");
+                insightSheet.Cell(rowIndex, monthIndex).Value = monthlyData.Value.ToFormattedString();
                 insightSheet.Cell(rowIndex, monthIndex).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
             }
             
@@ -96,7 +95,7 @@ public class ExcelGenerationService : IExcelGenerationService
         foreach (var summary in insight.Summary.Data)
         {
             var monthIndex = (DateTime.ParseExact(summary.Key, "MMMM", culture).Month) + FirstColumnMargin;
-            insightSheet.Cell(rowIndex, monthIndex).Value = summary.Value.ToString("g");
+            insightSheet.Cell(rowIndex, monthIndex).Value = summary.Value.ToFormattedString();
         }
     }
 }

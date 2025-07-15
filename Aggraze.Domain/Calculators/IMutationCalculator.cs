@@ -2,7 +2,7 @@
 
 namespace Aggraze.Domain.Calculators;
 
-public interface IMaximumDrawdownCalculator
+public interface IMutationCalculator
 {
     IInsightResult Calculate(string name, IReadOnlyList<TradeRow> trades);
 }

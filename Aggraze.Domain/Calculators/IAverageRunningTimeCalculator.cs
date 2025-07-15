@@ -4,5 +4,5 @@ namespace Aggraze.Domain.Calculators;
 
 public interface IAverageRunningTimeCalculator
 {
-    IInsightResult Calculate(string name, IEnumerable<TradeRow> trades);
+    IInsightResult Calculate(string name, IReadOnlyList<TradeRow> trades);
 }

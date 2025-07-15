@@ -4,5 +4,5 @@ public interface IInsightResult
 {
     string InsightName { get; }
     IReadOnlyDictionary<int, IReadOnlyDictionary<string, object>> YearMonthData { get; }
-    Summary Summary { get; }
+    ISummary Summary { get; }
 }

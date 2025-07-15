@@ -1,5 +1,8 @@
+using Aggraze.Domain.Calculators;
 using Aggraze.Domain.Types;
 using LanguageExt;
+
+using static LanguageExt.Prelude;
 
 namespace Aggraze.Application.Insights;
 
@@ -9,9 +12,20 @@ namespace Aggraze.Application.Insights;
 public class Mutation : IInsight
 {
     public string Name => "Mutation";
+
+    private readonly IMutationCalculator _mutationCalculator;
+
+    public Mutation(IMutationCalculator mutationCalculator) =>
+        _mutationCalculator = mutationCalculator;
+
+    public Option<IInsightResult> GenerateInsight(IReadOnlyList<TradeRow> trades) =>
+        trades
+            .Any(ContainsRequiredHeaders)
+        ? Some(this._mutationCalculator.Calculate(Name, trades.Where(ContainsRequiredHeaders).ToList()))
+        : None;
     
-    public Option<IInsightResult> GenerateInsight(IEnumerable<TradeRow> trades)
-    {
-        return Prelude.None;
-    }
+    private static Func<TradeRow, bool> ContainsRequiredHeaders => x =>
+        x.Data.Date.IsSome
+        && x.Data.Mutation.IsSome
+        && x.Data.Result.IsSome;
 }

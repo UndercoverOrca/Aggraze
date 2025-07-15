@@ -17,10 +17,10 @@ public class AverageRunningTimeWinners : IInsight
 
     public string Name => "Average running time winners";
 
-    public Option<IInsightResult> GenerateInsight(IEnumerable<TradeRow> trades) =>
+    public Option<IInsightResult> GenerateInsight(IReadOnlyList<TradeRow> trades) =>
         trades
             .All(ContainsRequiredValues)
-            ? Some(this._averageRunningTimeCalculator.Calculate(Name, trades.Where(x => x.Data.Result == Result.Win)))
+            ? Some(this._averageRunningTimeCalculator.Calculate(Name, trades.Where(x => x.Data.Result == Result.Win).ToList()))
             : None;
     
     private static Func<TradeRow, bool> ContainsRequiredValues => x =>

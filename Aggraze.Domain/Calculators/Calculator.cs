@@ -18,7 +18,7 @@ public class Calculator
         Dictionary<int, Dictionary<string, T>> yearMonthData,
         Dictionary<string, List<T>> summaryHelper,
         (int Year, int Month) group,
-        T value)
+        T yearMonthValue)
     {
         var year = group.Year;
         var month= Culture.DateTimeFormat.GetMonthName(group.Month);
@@ -28,17 +28,17 @@ public class Calculator
             yearMonthData[year] = new Dictionary<string, T>();
         }
 
-        yearMonthData[year][month] = value;
+        yearMonthData[year][month] = yearMonthValue;
 
         if (!summaryHelper.ContainsKey(month))
         {
             summaryHelper[month] = [];
         }
 
-        summaryHelper[month].AddRange(value);
+        summaryHelper[month].AddRange(yearMonthValue);
     }
 
-    protected static Dictionary<int,Dictionary<string,TimeSpan>> OrderYearMonthDataByYear(Dictionary<int,Dictionary<string,TimeSpan>> yearMonthData) =>
+    protected static Dictionary<int,Dictionary<string,T>> OrderYearMonthDataByYear<T>(Dictionary<int,Dictionary<string,T>> yearMonthData) =>
         yearMonthData
             .OrderBy(x => x.Key)
             .ThenBy(x => x.Value)
