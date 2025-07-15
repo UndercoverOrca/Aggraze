@@ -1,6 +1,6 @@
 using ClosedXML.Excel;
 
-namespace Aggraze.Application;
+namespace Aggraze.Application.Services;
 
 public interface IFileWriterService
 {

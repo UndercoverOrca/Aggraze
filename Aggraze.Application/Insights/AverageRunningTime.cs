@@ -1,5 +1,5 @@
-using Aggraze.Domain;
 using Aggraze.Domain.Calculators;
+using Aggraze.Domain.Types;
 using LanguageExt;
 using static LanguageExt.Prelude;
 
@@ -17,10 +17,10 @@ public class AverageRunningTime : IInsight
 
     public string Name => "Average running time";
 
-    public Option<InsightResult> GenerateInsight(IEnumerable<TradeRow> trades) =>
+    public Option<IInsightResult> GenerateInsight(IReadOnlyList<TradeRow> trades) =>
         trades
-            .All(ContainsRequiredValues)
-            ? Some(this._averageRunningTimeCalculator.CalculateAverageRunningTime(Name, trades))
+            .Any(ContainsRequiredValues)
+            ? Some(this._averageRunningTimeCalculator.Calculate(Name, trades.Where(ContainsRequiredValues).ToList()))
             : None;
 
     private static Func<TradeRow, bool> ContainsRequiredValues => x =>

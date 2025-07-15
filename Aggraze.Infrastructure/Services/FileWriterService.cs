@@ -1,7 +1,7 @@
-using Aggraze.Application;
+using Aggraze.Application.Services;
 using ClosedXML.Excel;
 
-namespace Aggraze.Infrastructure;
+namespace Aggraze.Infrastructure.Services;
 
 public class FileWriterService : IFileWriterService
 {

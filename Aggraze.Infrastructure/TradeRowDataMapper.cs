@@ -1,5 +1,4 @@
-﻿using Aggraze.Domain;
-using Aggraze.Domain.Extensions;
+﻿using Aggraze.Domain.Extensions;
 using Aggraze.Domain.Types;
 
 namespace Aggraze.Infrastructure;
@@ -20,8 +19,8 @@ public static class TradeRowDataMapper
             News = data.TryGetValueOrDefault("News").MapIfSome(bool.Parse),
             Result = data.TryGetValueOrDefault("Result").MapIfSome(Enum.Parse<Result>),
             Mutation = data.TryGetValueOrDefault("Mutation").MapIfSome(x => decimal.Parse(x) * 100),
-            MaximumDrawdown = data.TryGetValueOrDefault("Max. Drawdown").MapIfSome(decimal.Parse),
-            MaximumResult = data.TryGetValueOrDefault("Max. Result").MapIfSome(decimal.Parse),
+            MaximumDrawdown = data.TryGetValueOrDefault("Max. drawdown").MapIfSome(decimal.Parse),
+            MaximumResult = data.TryGetValueOrDefault("Max. result").MapIfSome(decimal.Parse),
             DateOfCreatedLevel = data.TryGetValueOrDefault("DoL").MapIfSome(x=> DateOnly.FromDateTime(DateTime.Parse(x))),
             TimeOfCreatedLevel = data.TryGetValueOrDefault("ToL").MapIfSome(x=> TimeOnly.FromDateTime(DateTime.Parse(x))),
             LevelPrice = data.TryGetValueOrDefault("Level price").MapIfSome(decimal.Parse),

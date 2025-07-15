@@ -1,7 +1,12 @@
-namespace Aggraze.Domain;
+namespace Aggraze.Domain.Types;
 
-public record InsightResult(
+public record InsightResult<T>(
     string InsightName,
-    Dictionary<int, Dictionary<string, TimeSpan>> YearMonthData,
-    Summary Summary);
-    
+    Dictionary<int, Dictionary<string, T>> YearMonthData,
+    ISummary Summary) : IInsightResult
+{
+    IReadOnlyDictionary<int, IReadOnlyDictionary<string, object>> IInsightResult.YearMonthData =>
+        YearMonthData.ToDictionary(
+            outer => outer.Key, IReadOnlyDictionary<string, object> (outer) => outer.Value
+                .ToDictionary(inner => inner.Key, inner => (object)inner.Value!));
+}

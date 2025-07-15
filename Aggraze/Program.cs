@@ -1,4 +1,4 @@
-﻿using Aggraze.Application;
+﻿using Aggraze.Application.Services;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Aggraze

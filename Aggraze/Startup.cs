@@ -1,7 +1,7 @@
-using Aggraze.Application;
 using Aggraze.Application.Insights;
+using Aggraze.Application.Services;
 using Aggraze.Domain.Calculators;
-using Aggraze.Infrastructure;
+using Aggraze.Infrastructure.Services;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Aggraze;
@@ -14,7 +14,9 @@ public class Startup
         
         // Register Domain services
         services.AddScoped<IAverageRunningTimeCalculator, AverageRunningTimeCalculator>();
+        services.AddScoped<IMutationCalculator, MutationCalculator>();
         services.AddScoped<IMaximumDrawdownCalculator, MaximumDrawdownCalculator>();
+        services.AddScoped<IMaximumRiskRewardWinningTradesCalculator, MaximumRiskRewardWinningTradesCalculator>();
 
         // Register application services
         services.AddScoped<AggregationOrchestratorService>();
@@ -29,7 +31,7 @@ public class Startup
         services.AddScoped<IInsight, AverageRunningTimeLosers>();
         services.AddScoped<IInsight, AverageRunningTimeWinners>();
         services.AddScoped<IInsight, MaximumDrawdown>();
-        services.AddScoped<IInsight, MaximumRRAllWinningTrades>();
+        services.AddScoped<IInsight, MaximumRiskRewardWinningTrades>();
         services.AddScoped<IInsight, Mutation>();
 
         // Optional: Logging
