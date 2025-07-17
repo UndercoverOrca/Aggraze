@@ -4,5 +4,5 @@ namespace Aggraze.Domain.Calculators;
 
 public interface IMaximumRiskRewardWinningTradesCalculator
 {
-    IInsightResult Calculate(string name, IReadOnlyList<TradeRow> trades);
+    decimal Calculate(KeyValuePair<(int Year, int Month), IEnumerable<TradeRowData>> group);
 }
