@@ -28,27 +28,11 @@ public class AverageRunningTime : InsightBase, IInsight
         && x.Data.OpenTime.IsSome
         && x.Data.ClosingTime.IsSome;
 
-    private IInsightResult Calculate(IReadOnlyList<TradeRow> trades)
-    {
-        var groupedByYearAndMonth = GroupTradesByYearAndMonth(trades);
-
-        var yearMonthData = new Dictionary<int, Dictionary<string, TimeSpan>>();
-        var summaryHelper = new Dictionary<string, List<TimeSpan>>();
-
-        foreach (var group in groupedByYearAndMonth)
-        {
-            var averageDurationAsTimeSpan = this._averageRunningTimeCalculator.Calculate(group);
-            AddYearMonthSummary(yearMonthData, summaryHelper, group.Key, averageDurationAsTimeSpan);
-        }
-
-        var summary = new Summary<TimeSpan>(
-            SummaryType.Average,
-            summaryHelper.ToDictionary(
-                x => x.Key,
-                x => TimeSpan.FromTicks((long)x.Value.Average(d => d.Ticks))
-            ));
-
-        var orderedYearMonthData = OrderYearMonthDataByYear(yearMonthData);
-        return new InsightResult<TimeSpan>(Name, orderedYearMonthData, summary);
-    }
+    private IInsightResult Calculate(IReadOnlyList<TradeRow> trades) =>
+        CalculateInsight(
+            Name,
+            trades,
+            this._averageRunningTimeCalculator.Calculate,
+            values => TimeSpan.FromTicks((long)values.Average(d => d.Ticks)),
+            SummaryType.Average);
 }
