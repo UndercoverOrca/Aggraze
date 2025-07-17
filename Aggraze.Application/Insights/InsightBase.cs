@@ -18,11 +18,10 @@ public class InsightBase
 
         var yearMonthData = new Dictionary<int, Dictionary<string, T>>();
         var summaryHelper = new Dictionary<string, List<T>>();
-
+        
         foreach (var group in groupedByYearAndMonth)
         {
-            var result = calculateFunc(group);
-            AddYearMonthSummary(yearMonthData, summaryHelper, group.Key, result);
+            AddYearMonthSummary(yearMonthData, summaryHelper, group.Key, calculateFunc(group));
         }
 
         var summary = new Summary<T>(
@@ -67,7 +66,7 @@ public class InsightBase
         summaryHelper[month].AddRange(yearMonthValue);
     }
 
-    protected static Dictionary<int, Dictionary<string, T>> OrderYearMonthDataByYear<T>(Dictionary<int, Dictionary<string, T>> yearMonthData) =>
+    private static Dictionary<int, Dictionary<string, T>> OrderYearMonthDataByYear<T>(Dictionary<int, Dictionary<string, T>> yearMonthData) =>
         yearMonthData
             .OrderBy(x => x.Key)
             .ThenBy(x => x.Value)
