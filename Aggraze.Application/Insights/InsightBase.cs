@@ -10,7 +10,7 @@ public class InsightBase
     protected static IInsightResult CalculateInsight<T>(
         string name,
         IReadOnlyList<TradeRow> trades,
-        Func<KeyValuePair<(int Year, int Month), IEnumerable<TradeRowData>>, T> calculateFunc,
+        Func<IEnumerable<TradeRowData>, T> calculateFunc,
         Func<IEnumerable<T>, T> summaryAggregator,
         SummaryType summaryType)
     {
@@ -21,7 +21,7 @@ public class InsightBase
         
         foreach (var group in groupedByYearAndMonth)
         {
-            AddYearMonthSummary(yearMonthData, summaryHelper, group.Key, calculateFunc(group));
+            AddYearMonthSummary(yearMonthData, summaryHelper, group.Key, calculateFunc(group.Value));
         }
 
         var summary = new Summary<T>(

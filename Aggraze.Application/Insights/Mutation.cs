@@ -27,8 +27,7 @@ public class Mutation : InsightBase, IInsight
 
     private static Func<TradeRow, bool> ContainsRequiredHeaders => x =>
         x.Data.Date.IsSome
-        && x.Data.Mutation.IsSome
-        && x.Data.Result.IsSome;
+        && x.Data.Mutation.IsSome;
 
     private IInsightResult Calculate(IReadOnlyList<TradeRow> trades) =>
         CalculateInsight(

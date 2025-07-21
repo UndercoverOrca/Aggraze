@@ -1,4 +1,5 @@
 ﻿using Aggraze.Domain.Types;
+using LanguageExt.UnsafeValueAccess;
 
 namespace Aggraze.Domain.Calculators;
 
@@ -6,15 +7,6 @@ public class MutationCalculator : Calculator, IMutationCalculator
 {
     private const decimal PercentageDivisor = 100m;
 
-    public decimal Calculate(KeyValuePair<(int Year, int Month), IEnumerable<TradeRowData>> group)
-    {
-        var averageMutation = group.Value
-            .GroupBy(trade => trade.Result)
-            .ToDictionary(
-                g => g.Key,
-                g => g.Count());
-
-        return averageMutation.GetValueOrDefault(Result.Win, 0)
-                - averageMutation.GetValueOrDefault(Result.Loss, 0);
-    }
+    public decimal Calculate(IEnumerable<TradeRowData> group) =>
+        group.Sum(x => x.Mutation.Value());
 }

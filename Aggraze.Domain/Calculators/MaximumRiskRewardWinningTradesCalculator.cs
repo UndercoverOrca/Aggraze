@@ -5,8 +5,8 @@ namespace Aggraze.Domain.Calculators;
 
 public class MaximumRiskRewardWinningTradesCalculator : Calculator, IMaximumRiskRewardWinningTradesCalculator
 {
-    public decimal Calculate(KeyValuePair<(int Year, int Month), IEnumerable<TradeRowData>> group) =>
-        group.Value
+    public decimal Calculate(IEnumerable<TradeRowData> group) =>
+        group
             .Where(x => x.Result == Result.Win)
             .Min(x => x.MaximumResult)
             .Value();

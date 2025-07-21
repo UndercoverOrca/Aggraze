@@ -5,8 +5,8 @@ namespace Aggraze.Domain.Calculators;
 
 public class MaximumDrawdownCalculator : Calculator, IMaximumDrawdownCalculator
 {
-    public decimal Calculate(KeyValuePair<(int Year, int Month), IEnumerable<TradeRowData>> group) => 
-        group.Value
+    public decimal Calculate(IEnumerable<TradeRowData> group) => 
+        group
             .Select(trade => trade.MaximumDrawdown)
             .Max(x => x.Value());
 }

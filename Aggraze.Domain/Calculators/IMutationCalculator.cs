@@ -4,5 +4,5 @@ namespace Aggraze.Domain.Calculators;
 
 public interface IMutationCalculator
 {
-    decimal Calculate(KeyValuePair<(int Year, int Month), IEnumerable<TradeRowData>> group);
+    decimal Calculate(IEnumerable<TradeRowData> group);
 }
