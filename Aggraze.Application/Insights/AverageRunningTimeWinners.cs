@@ -8,7 +8,7 @@ namespace Aggraze.Application.Insights;
 /// <summary>
 /// Shows the average running time of a traders' taken (backtest) trades that resulted in a win.
 /// </summary>
-public class AverageRunningTimeWinners : IInsight
+public class AverageRunningTimeWinners : InsightBase, IInsight
 {
     private readonly IAverageRunningTimeCalculator _averageRunningTimeCalculator;
 
@@ -20,7 +20,9 @@ public class AverageRunningTimeWinners : IInsight
     public Option<IInsightResult> GenerateInsight(IReadOnlyList<TradeRow> trades) =>
         trades
             .All(ContainsRequiredValues)
-            ? Some(this._averageRunningTimeCalculator.Calculate(Name, trades.Where(x => x.Data.Result == Result.Win).ToList()))
+            ? Some(Calculate(trades
+                .Where(x => x.Data.Result == Result.Win)
+                .ToList()))
             : None;
     
     private static Func<TradeRow, bool> ContainsRequiredValues => x =>
@@ -28,4 +30,12 @@ public class AverageRunningTimeWinners : IInsight
         && x.Data.OpenTime.IsSome
         && x.Data.ClosingTime.IsSome
         && x.Data.Result.IsSome;
+    
+    private IInsightResult Calculate(IReadOnlyList<TradeRow> trades) =>
+        CalculateInsight(
+            Name,
+            trades,
+            this._averageRunningTimeCalculator.Calculate,
+            values => TimeSpan.FromTicks((long)values.Average(d => d.Ticks)),
+            SummaryType.Average);
 }

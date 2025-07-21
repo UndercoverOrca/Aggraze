@@ -1,7 +1,6 @@
 using Aggraze.Domain.Calculators;
 using Aggraze.Domain.Types;
 using LanguageExt;
-
 using static LanguageExt.Prelude;
 
 namespace Aggraze.Application.Insights;
@@ -9,7 +8,7 @@ namespace Aggraze.Application.Insights;
 /// <summary>
 /// Shows the gain/loss of the of a traders' taken (backtest) trades, expressed in %.
 /// </summary>
-public class Mutation : IInsight
+public class Mutation : InsightBase, IInsight
 {
     public string Name => "Mutation";
 
@@ -21,11 +20,20 @@ public class Mutation : IInsight
     public Option<IInsightResult> GenerateInsight(IReadOnlyList<TradeRow> trades) =>
         trades
             .Any(ContainsRequiredHeaders)
-        ? Some(this._mutationCalculator.Calculate(Name, trades.Where(ContainsRequiredHeaders).ToList()))
-        : None;
-    
+            ? Some(Calculate(trades
+                .Where(ContainsRequiredHeaders)
+                .ToList()))
+            : None;
+
     private static Func<TradeRow, bool> ContainsRequiredHeaders => x =>
         x.Data.Date.IsSome
-        && x.Data.Mutation.IsSome
-        && x.Data.Result.IsSome;
+        && x.Data.Mutation.IsSome;
+
+    private IInsightResult Calculate(IReadOnlyList<TradeRow> trades) =>
+        CalculateInsight(
+            Name,
+            trades,
+            this._mutationCalculator.Calculate,
+            values => values.Max(),
+            SummaryType.Maximum);
 }

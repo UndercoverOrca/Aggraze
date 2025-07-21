@@ -8,7 +8,7 @@ namespace Aggraze.Application.Insights;
 /// <summary>
 /// Shows the maximum drawdown of the traders' taken (backtest) trades that resulted in a win.
 /// </summary>
-public class MaximumDrawdown : IInsight
+public class MaximumDrawdown : InsightBase, IInsight
 {
     private readonly IMaximumDrawdownCalculator _maximumDrawdownCalculator;
 
@@ -20,10 +20,20 @@ public class MaximumDrawdown : IInsight
     public Option<IInsightResult> GenerateInsight(IReadOnlyList<TradeRow> trades) =>
         trades
             .Any(ContainsRequiredValues)
-    ? Some(this._maximumDrawdownCalculator.Calculate(Name, trades.Where(ContainsRequiredValues).ToList()))
-    : None;
-    
+            ? Some(Calculate(trades
+                .Where(ContainsRequiredValues)
+                .ToList()))
+            : None;
+
     private static Func<TradeRow, bool> ContainsRequiredValues => x =>
         x.Data.Date.IsSome
         && x.Data.MaximumDrawdown.IsSome;
+    
+    private IInsightResult Calculate(IReadOnlyList<TradeRow> trades) =>
+        CalculateInsight(
+            Name,
+            trades,
+            this._maximumDrawdownCalculator.Calculate,
+            values => values.Max(),
+            SummaryType.Maximum);
 }
