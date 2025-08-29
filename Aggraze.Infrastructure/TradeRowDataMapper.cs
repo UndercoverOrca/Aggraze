@@ -19,7 +19,7 @@ public static class TradeRowDataMapper
             News = data.GetValueOrNone("News").MapIfSome(bool.Parse),
             Result = data.GetValueOrNone("Result").MapIfSome(Enum.Parse<Result>),
             Mutation = data.GetValueOrNone("Mutation").MapIfSome(x => decimal.Parse(x) * 100),
-            MaximumDrawdown = data.GetValueOrNone("Max. drawdown").MapIfSome(decimal.Parse),
+            MaximumDrawdown = data.GetValueOrNone("Max. drawdown").Bind(x => Pips.TryCreate(x).ToOption()),
             MaximumResult = data.GetValueOrNone("Max. result").MapIfSome(decimal.Parse),
             DateOfCreatedLevel = data.GetValueOrNone("DoL").MapIfSome(x => DateOnly.FromDateTime(DateTime.Parse(x))),
             TimeOfCreatedLevel = data.GetValueOrNone("ToL").MapIfSome(x => TimeOnly.FromDateTime(DateTime.Parse(x))),
@@ -31,6 +31,6 @@ public static class TradeRowDataMapper
             Low = data.GetValueOrNone("Low").MapIfSome(decimal.Parse),
             Close = data.GetValueOrNone("Close").MapIfSome(decimal.Parse),
             NextLevelPrice = data.GetValueOrNone("NLP").MapIfSome(decimal.Parse),
-            MaximumDrawdownWithRunner = data.GetValueOrNone("MDwR").MapIfSome(decimal.Parse)
+            MaximumDrawdownWithRunner = data.GetValueOrNone("MDwR").Bind(x => Pips.TryCreate(x).ToOption())
         };
 }
