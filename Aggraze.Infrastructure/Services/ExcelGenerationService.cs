@@ -7,9 +7,10 @@ namespace Aggraze.Infrastructure.Services;
 
 public class ExcelGenerationService : IExcelGenerationService
 {
-    private static CultureInfo culture = CultureInfo.InvariantCulture;
     private const int FirstColumnMargin = 1;
+    private const int MonthsPerYear = 12;
     private static int rowIndex = 1;
+    private static CultureInfo culture = CultureInfo.InvariantCulture;
 
     public XLWorkbook AddInsightsToSheet(string sourceFilePath, IReadOnlyList<IInsightResult> insights)
     {
@@ -42,7 +43,7 @@ public class ExcelGenerationService : IExcelGenerationService
 
     private static void SetHeader(IXLWorksheet insightSheet, int columnIndex, IInsightResult insight)
     {
-        insightSheet.Range(rowIndex, columnIndex + FirstColumnMargin, rowIndex, columnIndex + 12).Merge();
+        insightSheet.Range(rowIndex, columnIndex + FirstColumnMargin, rowIndex, columnIndex + MonthsPerYear).Merge();
         insightSheet.Cell(rowIndex, columnIndex + FirstColumnMargin).Style.Font.SetBold();
         insightSheet.Cell(rowIndex, columnIndex + FirstColumnMargin).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
         insightSheet.Cell(rowIndex, columnIndex + FirstColumnMargin).Value = insight.InsightName;
@@ -52,36 +53,37 @@ public class ExcelGenerationService : IExcelGenerationService
     private static void SetMonths(int columnIndex, IXLWorksheet insightSheet)
     {
         var columnIndexForMonths = columnIndex + FirstColumnMargin;
-        for (var i = 0; i < columnIndex + 12; i++)
+        for (var i = 0; i < columnIndex + MonthsPerYear; i++)
         {
-            insightSheet.Cell(rowIndex, columnIndexForMonths + i).Value = 
+            insightSheet.Cell(rowIndex, columnIndexForMonths + i).Value =
                 culture.DateTimeFormat.GetAbbreviatedMonthName(i + FirstColumnMargin);
         }
-        
-        insightSheet.Range(rowIndex, columnIndex + FirstColumnMargin, rowIndex, columnIndex + 12).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
-        insightSheet.Range(rowIndex, columnIndex, rowIndex, columnIndex + 12).Style.Font.SetBold();
-        insightSheet.Range(rowIndex, columnIndex, rowIndex, columnIndex + 12).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+
+        insightSheet.Range(rowIndex, columnIndex + FirstColumnMargin, rowIndex, columnIndex + MonthsPerYear).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+        insightSheet.Range(rowIndex, columnIndex, rowIndex, columnIndex + MonthsPerYear).Style.Font.SetBold();
+        insightSheet.Range(rowIndex, columnIndex, rowIndex, columnIndex + MonthsPerYear).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
     }
 
     private static void SetData(IInsightResult insight, int columnIndex, IXLWorksheet insightSheet)
     {
-        foreach (var year in insight.YearMonthData)
+        foreach (var yearlyData in insight.YearMonthData)
         {
-            insightSheet.Cell(rowIndex, columnIndex).Value = year.Key;
+            insightSheet.Cell(rowIndex, columnIndex).Value = yearlyData.Key;
             insightSheet.Cell(rowIndex, columnIndex).Style.Font.SetBold();
             insightSheet.Cell(rowIndex, columnIndex).Style.Border.RightBorder = XLBorderStyleValues.Thin;
 
-            foreach (var monthlyData in year.Value)
+            foreach (var monthlyData in yearlyData.Value)
             {
-                var monthIndex = (DateTime.ParseExact(monthlyData.Key, "MMMM", culture).Month) + FirstColumnMargin;
+                var monthIndex = DateTime.ParseExact(monthlyData.Key, "MMMM", culture).Month + FirstColumnMargin;
                 insightSheet.Cell(rowIndex, monthIndex).Value = monthlyData.Value.ToFormattedString();
+                insightSheet.Cell(rowIndex, monthIndex).Style.Font.SetFontColor(XLColor.Red);
                 insightSheet.Cell(rowIndex, monthIndex).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
             }
-            
+
             rowIndex++;
         }
-        
-        insightSheet.Range(rowIndex, columnIndex, rowIndex, columnIndex + 12).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+
+        insightSheet.Range(rowIndex, columnIndex, rowIndex, columnIndex + MonthsPerYear).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
     }
 
     private static void SetSummary(IInsightResult insight, int columnIndex, IXLWorksheet insightSheet)
@@ -90,11 +92,11 @@ public class ExcelGenerationService : IExcelGenerationService
         insightSheet.Cell(rowIndex, columnIndex).Style.Font.SetBold();
         insightSheet.Cell(rowIndex, columnIndex).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
         insightSheet.Cell(rowIndex, columnIndex).Style.Border.RightBorder = XLBorderStyleValues.Thin;
-        insightSheet.Range(rowIndex, columnIndex, rowIndex, columnIndex + 12).Style.Font.SetBold();
+        insightSheet.Range(rowIndex, columnIndex, rowIndex, columnIndex + MonthsPerYear).Style.Font.SetBold();
 
         foreach (var summary in insight.Summary.Data)
         {
-            var monthIndex = (DateTime.ParseExact(summary.Key, "MMMM", culture).Month) + FirstColumnMargin;
+            var monthIndex = DateTime.ParseExact(summary.Key, "MMMM", culture).Month + FirstColumnMargin;
             insightSheet.Cell(rowIndex, monthIndex).Value = summary.Value.ToFormattedString();
         }
     }
