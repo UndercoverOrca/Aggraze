@@ -11,7 +11,7 @@ public class TradeRowData
     public Option<OrderType> OrderType {get; set; }
     public Option<string> Day {get; set; }
     public Option<string> Session {get; set; }
-    public Option<decimal> Pobc {get; set; }
+    public Option<Pips> Pobc {get; set; }
     public Option<bool> News {get; set; }
     public Option<Result> Result {get; set; }
     public Option<decimal> Mutation {get; set; }
