@@ -1,4 +1,5 @@
 ﻿using Aggraze.Domain.Calculators;
+using Aggraze.Domain.Types;
 using Shouldly;
 
 namespace Aggraze.UnitTests.Calculators;
@@ -12,9 +13,9 @@ public class MaximumDrawdownCalculatorTests
     {
         // Arrange
         var builder = new TradeRowDataBuilder()
-            .WithMaximumDrawdown(12.5m)
+            .WithMaximumDrawdown(Pips.Create(12.5m))
             .Add()
-            .WithMaximumDrawdown(20)
+            .WithMaximumDrawdown(Pips.Create(20))
             .Add()
             .Build();
 
@@ -22,6 +23,6 @@ public class MaximumDrawdownCalculatorTests
         var result = _calculator.Calculate(builder);
 
         // Assert
-        result.ShouldBe(20m);
+        result.ShouldBe(Pips.Create(20m));
     }
 }

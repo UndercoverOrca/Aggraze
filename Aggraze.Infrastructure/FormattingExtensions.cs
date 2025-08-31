@@ -1,4 +1,6 @@
-﻿namespace Aggraze.Infrastructure;
+﻿using Aggraze.Domain.Types;
+
+namespace Aggraze.Infrastructure;
 
 public static class FormattingExtensions
 {
@@ -8,7 +10,7 @@ public static class FormattingExtensions
             TimeSpan ts => ts.ToString(@"h\:mm\:ss"),
             DateTime dt => dt.ToString("g"),
             decimal d => d.ToString("N2"),
-            // Pips p => p.ToString(),
+            Pips p => p.Value.ToString("N2"),
             _ => value.ToString()
         })!;
 }

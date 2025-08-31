@@ -4,5 +4,5 @@ namespace Aggraze.Domain.Calculators;
 
 public interface IMaximumDrawdownCalculator
 {
-    decimal Calculate(IEnumerable<TradeRowData> group);
+    Pips Calculate(IEnumerable<TradeRowData> group);
 }

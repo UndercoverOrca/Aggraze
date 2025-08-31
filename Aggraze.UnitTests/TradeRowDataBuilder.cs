@@ -25,7 +25,7 @@ public class TradeRowDataBuilder
         return this;
     }
     
-    public TradeRowDataBuilder WithMaximumDrawdown(decimal maximumDrawdown)
+    public TradeRowDataBuilder WithMaximumDrawdown(Pips maximumDrawdown)
     {
         _data.MaximumDrawdown = maximumDrawdown;
         return this;

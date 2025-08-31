@@ -11,18 +11,18 @@ public class TradeRowData
     public Option<OrderType> OrderType {get; set; }
     public Option<string> Day {get; set; }
     public Option<string> Session {get; set; }
-    public Option<decimal> Pobc {get; set; }
+    public Option<Pips> Pobc {get; set; }
     public Option<bool> News {get; set; }
     public Option<Result> Result {get; set; }
     public Option<decimal> Mutation {get; set; }
-    public Option<decimal> MaximumDrawdown {get; set; }
+    public Option<Pips> MaximumDrawdown {get; set; }
     public Option<decimal> MaximumResult {get; set; }
     public Option<DateOnly> DateOfCreatedLevel {get; set; }
     public Option<TimeOnly> TimeOfCreatedLevel {get; set; }
     public Option<decimal> LevelPrice {get; set; }
     public Option<Direction> FourHourDirection {get; set; }
     public Option<bool> Closed15MinInOppositeDirection {get; set; }
-    public Option<decimal> MaximumDrawdownWithRunner {get; set; }
+    public Option<Pips> MaximumDrawdownWithRunner {get; set; }
     public Option<decimal> Open {get; set; }
     public Option<decimal> High {get; set; }
     public Option<decimal> Low {get; set; }

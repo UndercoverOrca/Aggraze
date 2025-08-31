@@ -5,10 +5,10 @@ namespace Aggraze.Domain.Extensions;
 
 public static class DictionaryExtensions
 {
-    public static Option<string> TryGetValueOrDefault(this Dictionary<string, string> data, string key) =>
+    public static Option<string> GetValueOrNone(this Dictionary<string, string> data, string key) =>
         data.TryGetValue(key, out var value)
         && !IsEmptyString(value)
-            ? Optional(value) 
+            ? Some(value) 
             : None;
     
     private static bool IsEmptyString(string value) =>
