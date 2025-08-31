@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Aggraze.UnitTests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f47b63f75688451880e6045ed3f96d724e308300")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9053ccbf11c8aa4fd988230adc3b0087325ae6a8")]
 [assembly: System.Reflection.AssemblyProductAttribute("Aggraze.UnitTests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Aggraze.UnitTests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
