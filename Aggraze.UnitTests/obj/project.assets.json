@@ -3492,19 +3492,19 @@
     ]
   },
   "packageFolders": {
-    "/Users/timvandernol/.nuget/packages/": {}
+    "C:\\Users\\timno\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/timvandernol/RiderProjects/Aggraze/Aggraze.UnitTests/Aggraze.UnitTests.csproj",
+      "projectUniqueName": "C:\\Users\\timno\\RiderProjects\\Aggraze\\Aggraze.UnitTests\\Aggraze.UnitTests.csproj",
       "projectName": "Aggraze.UnitTests",
-      "projectPath": "/Users/timvandernol/RiderProjects/Aggraze/Aggraze.UnitTests/Aggraze.UnitTests.csproj",
-      "packagesPath": "/Users/timvandernol/.nuget/packages/",
-      "outputPath": "/Users/timvandernol/RiderProjects/Aggraze/Aggraze.UnitTests/obj/",
+      "projectPath": "C:\\Users\\timno\\RiderProjects\\Aggraze\\Aggraze.UnitTests\\Aggraze.UnitTests.csproj",
+      "packagesPath": "C:\\Users\\timno\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\timno\\RiderProjects\\Aggraze\\Aggraze.UnitTests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/timvandernol/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\timno\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
@@ -3516,8 +3516,8 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "/Users/timvandernol/RiderProjects/Aggraze/Aggraze.Domain/Aggraze.Domain.csproj": {
-              "projectPath": "/Users/timvandernol/RiderProjects/Aggraze/Aggraze.Domain/Aggraze.Domain.csproj"
+            "C:\\Users\\timno\\RiderProjects\\Aggraze\\Aggraze.Domain\\Aggraze.Domain.csproj": {
+              "projectPath": "C:\\Users\\timno\\RiderProjects\\Aggraze\\Aggraze.Domain\\Aggraze.Domain.csproj"
             }
           }
         }
@@ -3579,7 +3579,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/Users/timvandernol/.dotnet/sdk/9.0.200/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.205/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
