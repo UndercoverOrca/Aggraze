@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "/hX4UOth6jHWWVdxysb5OSMblgN3WrqaLTmI/YB3n/k=",
+  "Source": "Aggraze.WebApi",
+  "BasePath": "_content/Aggraze.WebApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
