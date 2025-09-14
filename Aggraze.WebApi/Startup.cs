@@ -2,5 +2,8 @@
 
 public class Startup
 {
-    
+    public ServiceProvider ConfigureServices()
+    {
+        
+    }
 }

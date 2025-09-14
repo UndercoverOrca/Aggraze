@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Aggraze.WebApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9155a87f893a8958473e2d8a025ded7198c9cc8f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8c914eb614c9585c2dca2d13fcd5486d9da8f287")]
 [assembly: System.Reflection.AssemblyProductAttribute("Aggraze.WebApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Aggraze.WebApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

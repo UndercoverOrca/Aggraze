@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\timno\\RiderProjects\\Aggraze\\Aggraze.WebApi\\Aggraze.WebApi.csproj": {}
+    "/Users/timvandernol/RiderProjects/Aggraze/Aggraze.WebApi/Aggraze.WebApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\timno\\RiderProjects\\Aggraze\\Aggraze.Application\\Aggraze.Application.csproj": {
+    "/Users/timvandernol/RiderProjects/Aggraze/Aggraze.Application/Aggraze.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\timno\\RiderProjects\\Aggraze\\Aggraze.Application\\Aggraze.Application.csproj",
+        "projectUniqueName": "/Users/timvandernol/RiderProjects/Aggraze/Aggraze.Application/Aggraze.Application.csproj",
         "projectName": "Aggraze.Application",
-        "projectPath": "C:\\Users\\timno\\RiderProjects\\Aggraze\\Aggraze.Application\\Aggraze.Application.csproj",
-        "packagesPath": "C:\\Users\\timno\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\timno\\RiderProjects\\Aggraze\\Aggraze.Application\\obj\\",
+        "projectPath": "/Users/timvandernol/RiderProjects/Aggraze/Aggraze.Application/Aggraze.Application.csproj",
+        "packagesPath": "/Users/timvandernol/.nuget/packages/",
+        "outputPath": "/Users/timvandernol/RiderProjects/Aggraze/Aggraze.Application/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\timno\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/Users/timvandernol/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -26,8 +26,8 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\Users\\timno\\RiderProjects\\Aggraze\\Aggraze.Domain\\Aggraze.Domain.csproj": {
-                "projectPath": "C:\\Users\\timno\\RiderProjects\\Aggraze\\Aggraze.Domain\\Aggraze.Domain.csproj"
+              "/Users/timvandernol/RiderProjects/Aggraze/Aggraze.Domain/Aggraze.Domain.csproj": {
+                "projectPath": "/Users/timvandernol/RiderProjects/Aggraze/Aggraze.Domain/Aggraze.Domain.csproj"
               }
             }
           }
@@ -73,21 +73,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.205/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/Users/timvandernol/.dotnet/sdk/9.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\timno\\RiderProjects\\Aggraze\\Aggraze.Domain\\Aggraze.Domain.csproj": {
+    "/Users/timvandernol/RiderProjects/Aggraze/Aggraze.Domain/Aggraze.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\timno\\RiderProjects\\Aggraze\\Aggraze.Domain\\Aggraze.Domain.csproj",
+        "projectUniqueName": "/Users/timvandernol/RiderProjects/Aggraze/Aggraze.Domain/Aggraze.Domain.csproj",
         "projectName": "Aggraze.Domain",
-        "projectPath": "C:\\Users\\timno\\RiderProjects\\Aggraze\\Aggraze.Domain\\Aggraze.Domain.csproj",
-        "packagesPath": "C:\\Users\\timno\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\timno\\RiderProjects\\Aggraze\\Aggraze.Domain\\obj\\",
+        "projectPath": "/Users/timvandernol/RiderProjects/Aggraze/Aggraze.Domain/Aggraze.Domain.csproj",
+        "packagesPath": "/Users/timvandernol/.nuget/packages/",
+        "outputPath": "/Users/timvandernol/RiderProjects/Aggraze/Aggraze.Domain/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\timno\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/Users/timvandernol/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -138,21 +138,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.205/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/Users/timvandernol/.dotnet/sdk/9.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\timno\\RiderProjects\\Aggraze\\Aggraze.WebApi\\Aggraze.WebApi.csproj": {
+    "/Users/timvandernol/RiderProjects/Aggraze/Aggraze.WebApi/Aggraze.WebApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\timno\\RiderProjects\\Aggraze\\Aggraze.WebApi\\Aggraze.WebApi.csproj",
+        "projectUniqueName": "/Users/timvandernol/RiderProjects/Aggraze/Aggraze.WebApi/Aggraze.WebApi.csproj",
         "projectName": "Aggraze.WebApi",
-        "projectPath": "C:\\Users\\timno\\RiderProjects\\Aggraze\\Aggraze.WebApi\\Aggraze.WebApi.csproj",
-        "packagesPath": "C:\\Users\\timno\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\timno\\RiderProjects\\Aggraze\\Aggraze.WebApi\\obj\\",
+        "projectPath": "/Users/timvandernol/RiderProjects/Aggraze/Aggraze.WebApi/Aggraze.WebApi.csproj",
+        "packagesPath": "/Users/timvandernol/.nuget/packages/",
+        "outputPath": "/Users/timvandernol/RiderProjects/Aggraze/Aggraze.WebApi/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\timno\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/Users/timvandernol/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -164,11 +164,11 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\Users\\timno\\RiderProjects\\Aggraze\\Aggraze.Application\\Aggraze.Application.csproj": {
-                "projectPath": "C:\\Users\\timno\\RiderProjects\\Aggraze\\Aggraze.Application\\Aggraze.Application.csproj"
+              "/Users/timvandernol/RiderProjects/Aggraze/Aggraze.Application/Aggraze.Application.csproj": {
+                "projectPath": "/Users/timvandernol/RiderProjects/Aggraze/Aggraze.Application/Aggraze.Application.csproj"
               },
-              "C:\\Users\\timno\\RiderProjects\\Aggraze\\Aggraze.Domain\\Aggraze.Domain.csproj": {
-                "projectPath": "C:\\Users\\timno\\RiderProjects\\Aggraze\\Aggraze.Domain\\Aggraze.Domain.csproj"
+              "/Users/timvandernol/RiderProjects/Aggraze/Aggraze.Domain/Aggraze.Domain.csproj": {
+                "projectPath": "/Users/timvandernol/RiderProjects/Aggraze/Aggraze.Domain/Aggraze.Domain.csproj"
               }
             }
           }
@@ -217,7 +217,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.205/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/Users/timvandernol/.dotnet/sdk/9.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

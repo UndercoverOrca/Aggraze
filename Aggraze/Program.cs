@@ -5,7 +5,7 @@ namespace Aggraze
 {
     class Program
     {
-        public static async Task Main(string[] args)
+        public static async Task Main()
         {
             // Set up DI
             var startup = new Startup();

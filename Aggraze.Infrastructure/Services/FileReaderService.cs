@@ -7,13 +7,20 @@ namespace Aggraze.Infrastructure.Services;
 
 public class FileReaderService : IFileReaderService
 {
-    public async Task<IReadOnlyList<TradeRow>> ReadTradesAsync(string filePath, string? sheetName)
+    public async Task<IReadOnlyList<TradeRow>> ReadTradesAsync(string filePath, string? sheetName) =>
+        await ReadTradeRowsAsync2(() => File.OpenRead(filePath), sheetName);
+
+    public async Task<IReadOnlyList<TradeRow>> ReadTradesAsync(Stream fileStream, string? sheetName) => 
+        await ReadTradeRowsAsync2(() => fileStream, sheetName);
+
+    private static async Task<IReadOnlyList<TradeRow>> ReadTradeRowsAsync2(Func<Stream> streamProvider, string sheetName)
     {
         var tradeRows = new List<TradeRow>();
 
         await Task.Run(() =>
         {
-            using var workbook = new XLWorkbook(filePath);
+            using var stream = streamProvider();
+            using var workbook = new XLWorkbook(stream);
             var worksheet = sheetName is not null
                 ? workbook.Worksheet(sheetName)
                 : workbook.Worksheets.FirstOrDefault();
