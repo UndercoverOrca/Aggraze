@@ -1,5 +1,7 @@
-﻿using Aggraze.Domain.Calculators;
+﻿using System;
+using Aggraze.Domain.Calculators;
 using Shouldly;
+using Xunit;
 
 namespace Aggraze.UnitTests.Calculators;
 
