@@ -8,12 +8,16 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.8"/>
+        <PackageReference Include="Serilog" Version="4.3.0" />
+        <PackageReference Include="Serilog.Extensions.Hosting" Version="9.0.0" />
+        <PackageReference Include="Serilog.Sinks.Console" Version="6.0.0" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="9.0.4" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\Aggraze.Application\Aggraze.Application.csproj" />
       <ProjectReference Include="..\Aggraze.Domain\Aggraze.Domain.csproj" />
+      <ProjectReference Include="..\Aggraze.Infrastructure\Aggraze.Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>
