@@ -1,0 +1,6 @@
+@Aggraze.WebApi_HostAddress = http://localhost:5229
+
+GET {{Aggraze.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
