@@ -1,6 +1,6 @@
 ﻿using Aggraze.Domain.Types;
 
-namespace Aggraze.Infrastructure;
+namespace Aggraze.Infrastructure.Extensions;
 
 public static class FormattingExtensions
 {
