@@ -1,11 +1,22 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref, onMounted } from 'vue';
+
+const artists = ref([]);
+
+onMounted(async () => {
+  const response = await fetch('/test/artists');
+  artists.value = await response.json();
+})
+
+</script>
 
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <h1>Artists</h1>
+  <ul>
+    <li v-for="artist in artists" :key="artist">
+      {{ artist }}
+    </li>
+  </ul>
 </template>
 
 <style scoped></style>
