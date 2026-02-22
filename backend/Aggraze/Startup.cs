@@ -22,7 +22,6 @@ public class Startup
         services.AddScoped<AggregationOrchestratorService>();
 
         // Register infrastructure services
-        services.AddScoped<IFileReaderService, FileReaderService>();
         services.AddScoped<IFileWriterService, FileWriterService>();
         services.AddScoped<IExcelGenerationService, ExcelGenerationService>();
 
