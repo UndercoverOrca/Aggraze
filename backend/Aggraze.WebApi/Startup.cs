@@ -113,6 +113,8 @@ public class Startup
                     ValidateAudience = true,
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
+                    ValidIssuer = this.configuration["Authentication:Jwt:Issuer"],
+                    ValidAudience = this.configuration["Authentication:Jwt:Audience"],
                     IssuerSigningKey = new SymmetricSecurityKey(
                         Encoding.UTF8.GetBytes(this.configuration["Authentication:Jwt:SecretKey"]!))
                 };
@@ -123,6 +125,12 @@ public class Startup
 
     public void Configure(IApplicationBuilder app)
     {
+        using (var scope = app.ApplicationServices.CreateScope())
+        {
+            var dbContext = scope.ServiceProvider.GetRequiredService<AggrazeDbContext>();
+            dbContext.Database.Migrate();
+        }
+
         app.UseRouting();
 
         app.UseAuthentication();

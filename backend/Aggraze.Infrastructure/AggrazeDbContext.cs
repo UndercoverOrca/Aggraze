@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Aggraze.Infrastructure;
 
-public class AggrazeDbContext : IdentityDbContext<UserEntity, IdentityRole<Guid>, Guid>
+public class AggrazeDbContext : IdentityDbContext<UserEntity, IdentityRole, string>
 {
     public AggrazeDbContext(DbContextOptions<AggrazeDbContext> options)
         : base(options)
