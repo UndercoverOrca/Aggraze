@@ -1,16 +1,32 @@
-using System.Globalization;
+﻿using System.Globalization;
+using Aggraze.Application;
 using Aggraze.Application.Services;
 using Aggraze.Domain.Types;
 using ClosedXML.Excel;
 
 namespace Aggraze.Infrastructure.Services;
 
-public class FileReaderService : IFileReaderService
+public class FileService : IFileService
 {
+    private readonly IFileStorage fileStorage;
+    private readonly IBackgroundJobService backgroundJobService;
+
+    public FileService(IFileStorage fileStorage, IBackgroundJobService backgroundJobService)
+    {
+        this.fileStorage = fileStorage;
+        this.backgroundJobService = backgroundJobService;
+    }
+
+    public async Task SaveFile(string fileName, Stream stream, string sheetName, CancellationToken cancellationToken)
+    {
+        var filePath = await this.fileStorage.SaveAsync(stream, fileName, cancellationToken);
+        this.backgroundJobService.EnqueueFileProcessing(filePath, sheetName);
+    }
+
     public async Task<IReadOnlyList<TradeRow>> ReadTradesAsync(string filePath, string? sheetName) =>
         await ReadTradeRowsAsync(() => File.OpenRead(filePath), sheetName);
 
-    public async Task<IReadOnlyList<TradeRow>> ReadTradesAsync(Stream fileStream, string? sheetName) => 
+    public async Task<IReadOnlyList<TradeRow>> ReadTradesAsync(Stream fileStream, string? sheetName) =>
         await ReadTradeRowsAsync(() => fileStream, sheetName);
 
     private static async Task<IReadOnlyList<TradeRow>> ReadTradeRowsAsync(Func<Stream> streamProvider, string? sheetName)
@@ -51,7 +67,7 @@ public class FileReaderService : IFileReaderService
                 }
 
                 var date = ReadDate(data);
-                
+
                 tradeRows.Add(new TradeRow(date, TradeRowDataMapper.Map(data)));
             }
         });
@@ -64,7 +80,7 @@ public class FileReaderService : IFileReaderService
         var dateAsString = data.TryGetValue("Date", out var dateValue)
             ? dateValue
             : string.Empty;
-        
+
         return DateOnly.FromDateTime(DateTime.ParseExact(
             dateAsString,
             "dd-MM-yyyy HH:mm:ss",

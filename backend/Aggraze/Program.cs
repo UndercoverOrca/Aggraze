@@ -33,7 +33,7 @@ namespace Aggraze
             try
             {
                 // Resolve services
-                var fileReader = serviceProvider.GetRequiredService<IFileReaderService>();
+                var fileReader = serviceProvider.GetRequiredService<IFileService>();
                 var orchestrator = serviceProvider.GetRequiredService<AggregationOrchestratorService>();
                 var excelGenerator = serviceProvider.GetRequiredService<IExcelGenerationService>();
                 var fileWriter = serviceProvider.GetRequiredService<IFileWriterService>();
